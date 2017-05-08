@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="人力资源管理系统,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="人力资源管理系统是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+    <title>部门管理</title>
+
+    <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+
+</head>
+<body class="gray-bg">
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>编辑操作</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <label for="department_name">部门名称:</label>
+
+                    <select name="department_name" id="department_name" class="form-control m-b" style="display:inline-block;width:100px">
+                        <option value="0">全部</option>
+                        <option value="1">技术中心</option>
+                        <option value="2">财务部</option>
+                        <option value="3">运营部</option>
+                        <option value="4">市场部</option>
+                        <option value="5">人事部</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-info" type="button">查询</button>
+                </div>
+
+                <div class="col-md-1 pull-right" style="margin-right: 50px;">
+                    <button class="btn btn-danger " type="button"><i class="fa fa-trash-o fa-fw"></i>删除所选项</button>
+                </div>
+                <div class="col-md-1 pull-right" style="margin-right: 20px;">
+                    <button class="btn btn-info" type="button"><i class="fa fa-plus fa-fw"></i>增加部门</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="ibox-title">
+            <h5>查询结果</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="ibox-content">
+
+            <div class="row row-lg">
+                <div class="col-sm-6">
+                    <h4 class="example-title">无数据时</h4>
+                    <div class="example">
+                        <!--<table data-toggle="table" data-url="js/demo/table_base.json" data-height="250" data-mobile-responsive="true">-->
+                        <table data-toggle="table" data-url="js/demo/table_base.json" data-height="250"
+                               data-mobile-responsive="true">
+                            <thead>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <th>ID</th>
+                                <th>部门名称</th>
+                                <th>部门经理</th>
+                                <th>部门员工数</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4 class="example-title">有数据时</h4>
+                    <div class="example">
+                        <!--<table id="exampleTableFromData" data-mobile-responsive="true">-->
+                        <table data-toggle="table" data-mobile-responsive="true">
+                            <thead>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <th>ID</th>
+                                <th>部门名称</th>
+                                <th>部门经理</th>
+                                <th>部门员工数</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>1</td>
+                                <td>技术中心</td>
+                                <td>苏少菊</td>
+                                <td>60</td>
+                                <td>
+                                    <button class="btn btn-info " type="button"><i class="fa fa-pencil fa-fw"></i>编辑
+                                    </button>
+                                    <button class="btn btn-danger " type="button"><i class="fa fa-trash-o fa-fw"></i>删除
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>2</td>
+                                <td>财务部</td>
+                                <td>董玉霞</td>
+                                <td>50</td>
+                                <td>
+                                    <button class="btn btn-info " type="button"><i class="fa fa-pencil fa-fw"></i>编辑
+                                    </button>
+                                    <button class="btn btn-danger " type="button"><i class="fa fa-trash-o fa-fw"></i>删除
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/content.min.js?v=1.0.0"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/demo/bootstrap-table-demo.min.js"></script>
+</body>
+</html>
