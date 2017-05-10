@@ -22,17 +22,23 @@
     <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
 
     <style>
+        #edit_box{
+            padding: 20px;
+        }
         #edit_box input,
         #edit_box select{
             width: 60%;
             display: inline-block;
         }
 
-        #edit_box .col-sm-6{
+        #edit_box .col-sm-6,
+        #edit_box .col-sm-12{
             margin-bottom: 20px;
         }
     </style>
+
 </head>
+
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInDown">
 
@@ -179,81 +185,104 @@
             <br>
         </div>
 
-        <div class="clearfix hidden-xs"></div>
-        <div class="col-sm-6">
-            <label for="stuffName">姓名:</label>
-            <input class="form-control" type="text" placeholder="请输入用户名" id="e_stuffName">
-        </div>
-        <div class="col-sm-6">
-            <label for="stuffName">年龄:</label>
-            <input class="form-control" type="text" placeholder="请输入年龄" id="e_stuffAge">
-        </div>
-        <div class="clearfix hidden-xs"></div>
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="stuffName">姓名:</label>
+                <input class="form-control" type="text" placeholder="请输入用户名" id="e_stuffName">
+            </div>
 
+            <div class="col-sm-6">
+                <label for="e_stuffAge">年龄:</label>
+                <input class="form-control" type="text" placeholder="请输入年龄" id="e_stuffAge">
+            </div>
+        </div>
 
-        <div class="col-sm-6">
-            <label for="e_sex">性别:</label>
-            <select name="e_sex" id="e_sex" class="form-control">
-                <option value="0">男</option>
-                <option value="1">女</option>
-            </select>
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="e_sex">性别:</label>
+                <select name="e_sex" id="e_sex" class="form-control">
+                    <option value="0">男</option>
+                    <option value="1">女</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label for="e_stuffNation">民族:</label>
+                <input class="form-control" type="text" placeholder="请输入民族" id="e_stuffNation">
+            </div>
         </div>
-        <div class="col-sm-6">
-            <label for="e_stuffNation">民族:</label>
-            <input class="form-control" type="text" placeholder="请输入用户名" id="e_stuffNation">
-        </div>
-        <div class="clearfix hidden-xs"></div>
 
-        <div class="col-sm-6">
-            <label for="e_stuffAdd">地址:</label>
-            <input class="form-control" type="text" placeholder="请输入地址" id="e_stuffAdd">
-        </div>
-        <div class="col-sm-6">
-            <label for="e_stuffTel">电话:</label>
-            <input class="form-control" type="text" placeholder="请输入电话" id="e_stuffTel">
-        </div>
-        <div class="clearfix hidden-xs"></div>
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="e_stuffTel">电话:</label>
+                <input class="form-control" type="text" placeholder="请输入电话" id="e_stuffTel">
+            </div>
 
-        <div class="col-sm-6">
-            <label for="e_stuffEmail">邮箱:</label>
-            <input class="form-control" type="text" placeholder="请输入邮箱" id="e_stuffEmail">
+            <div class="col-sm-6">
+                <label for="e_stuffEmail">邮箱:</label>
+                <input class="form-control" type="email" placeholder="请输入邮箱" id="e_stuffEmail">
+            </div>
         </div>
-        <div class="col-sm-6">
-            <label for="e_stuffEdu">学历:</label>
-            <select name="e_wedding" id="e_stuffEdu" class="form-control">
-                <option value="0">研究生以上</option>
-                <option value="1">研究生</option>
-                <option value="2">本科</option>
-                <option value="1">专科</option>
-            </select>
-        </div>
-        <div class="clearfix hidden-xs"></div>
 
-        <div class="col-sm-6">
-            <label for="stuffName">技能:</label>
-            <input class="form-control" type="text" placeholder="请输入用户名" id="e_stuffName">
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="e_wedding">婚况:</label>
+                <select name="e_wedding" id="e_wedding" class="form-control">
+                    <option value="0">未婚</option>
+                    <option value="1">已婚</option>
+                </select>
+            </div>
         </div>
-        <div class="col-sm-6">
-            <label for="stuffName">专业:</label>
-            <input class="form-control" type="text" placeholder="请输入用户名" id="e_stuffAge">
-        </div>
-        <div class="clearfix hidden-xs"></div>
 
-        <div class="col-sm-6">
-            <label for="stuffName">职称:</label>
-            <input class="form-control" type="text" placeholder="请输入用户名" id="e_stuffName">
+        <div class="from-group">
+            <div class="col-sm-12">
+                <label for="e_stuffAdd">地址:</label>
+                <input class="form-control" type="text" placeholder="请输入地址" id="e_stuffAdd">
+            </div>
         </div>
-        <div class="col-sm-6">
-            <label for="e_wedding">婚况:</label>
-            <select name="e_wedding" id="e_wedding" class="form-control">
-                <option value="0">未婚</option>
-                <option value="1">已婚</option>
-            </select>
+
+        <div class="from-group">
+            <div class="col-sm-12">
+                <label for="e_stuffColleage">毕业院校:</label>
+                <input class="form-control" type="text" placeholder="请输入毕业院校" id="e_stuffColleage">
+            </div>
         </div>
-        <div class="clearfix hidden-xs"></div>
-        <div class="col-sm-6">
-            <label for="stuffName">毕业院校:</label>
-            <input class="form-control" type="text" placeholder="请输入用户名" id="e_stuffName">
+
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="e_stuffProfession">专业:</label>
+                <input class="form-control" type="text" placeholder="请输入专业" id="e_stuffProfession">
+            </div>
+
+            <div class="col-sm-6">
+                <label for="e_stuffEdu">学历:</label>
+                <select name="e_stuffEdu" id="e_stuffEdu" class="form-control">
+                    <option value="0">研究生以上</option>
+                    <option value="1">研究生</option>
+                    <option value="2">本科</option>
+                    <option value="1">专科</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="from-group">
+            <div class="col-sm-12">
+                <label for="e_stuffGrad">职称:</label>
+                <input class="form-control" type="text" placeholder="请输入职称" id="e_stuffGrad">
+            </div>
+        </div>
+
+        <div class="from-group">
+            <div class="col-sm-12">
+                <label for="e_stuffSkill">技能:</label>
+                <input class="form-control" type="text" placeholder="请输入用户名" id="e_stuffSkill">
+            </div>
+        </div>
+
+        <div class="from-group">
+            <div class="col-sm-12 text-center">
+            <button class="btn btn-primary" type="button">确定</button>
+            <button class="btn btn-default" type="button">取消</button>
+            </div>
         </div>
     </form>
 
@@ -288,6 +317,11 @@
 
         $("#edit_box").show();
     }
+
+    //详情按钮 弹框
+    $(".detail_btn").click(function(){
+        location.href="staffBasicDetail.html";
+    });
 </script>
 </body>
 </html>
