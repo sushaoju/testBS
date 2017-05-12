@@ -30,6 +30,7 @@
     <div>
         <div class="ibox-title">
             <h5>应聘人员查询条件</h5>
+            <a class="pull-right" href="recruitInfo.html">返回招聘信息<<</a>
         </div>
         <div class="ibox-content">
             <form role="form" class="form-inline">
@@ -215,22 +216,6 @@
 
 <script>
 
-    //录用按钮 弹框
-    $(".edit_btn").click(function () {
-        swal({
-            title: "您确定要录用吗",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#A5DC86",
-            confirmButtonText: "录用",
-            cancelButtonText: "取消",
-            closeOnConfirm: false
-        }, function () {
-            swal("录用成功！", "哈哈，又多了一个小伙伴。", "success")
-        })
-    });
-
-
     //增加按钮 弹框
     $("#ap_addBtn").click(alertAddBox);
     function alertAddBox() {
@@ -247,6 +232,12 @@
     }
     $("#ap_closeBtn").click(function () {
         $(".layui-layer-close2").click();
+    });
+
+
+    // 录用按钮
+    $(".edit_btn").click(function () {
+        location.href = "hiringYou.html";
     });
 </script>
 </body>

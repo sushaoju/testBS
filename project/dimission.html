@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <title>招聘</title>
+    <title>离职</title>
 
     <meta name="keywords" content="人力资源管理系统,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="人力资源管理系统是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
@@ -35,18 +35,30 @@
 
             <form role="form" class="form-inline">
                 <div class="form-group">
-                    <input type="text" placeholder="请输入编号" id="recruitID" class="form-control">
-                    <input type="text" placeholder="请输入需求岗位" id="demandJob" class="form-control">
-                    <input type="text" placeholder="请输入到岗日期" id="arrivalDate" class="form-control">
+                    <input type="text" placeholder="请输入工号" id="s_stuffID" class="form-control">
+                    <input type="text" placeholder="请输入姓名" id="s_stuffName" class="form-control">
+                    <select name="s_stuffDepart" id="s_stuffDepart" class="form-control">
+                        <option value="0">技术部</option>
+                        <option value="1">财务部</option>
+                    </select>
+
+                    <label for="">入职日期：</label>
+                    <input type="date" class="form-control" placeholder="开始日期"> ——
+                    <input type="date" class="form-control" placeholder="结束日期">
+                </div>
+                <div class="form-group" style="margin-top: 10px">
+                    <label for="">离职日期：</label>
+                    <input type="date" class="form-control" placeholder="开始日期"> ——
+                    <input type="date" class="form-control" placeholder="结束日期" style="margin-right: 15px">
+
+                    <button class="btn btn-info" type="button"><i class="fa fa-search fa-fw"></i>查询</button>
+                    <button id="applicant_addBtn" class="btn btn-primary" type="button"><i class="fa fa-plus fa-fw"></i>增加
+                    </button>
+                    <button id="applicant_delBtn" class="btn btn-danger" type="button"><i class="fa fa-trash-o fa-fw"></i>删除
+                    </button>
                 </div>
 
-                <button class="btn btn-info" type="button"><i class="fa fa-search fa-fw"></i>查询</button>
-                <button id="applicant_addBtn" class="btn btn-primary" type="button"><i class="fa fa-plus fa-fw"></i>增加
-                </button>
-                <button id="applicant_delBtn" class="btn btn-danger" type="button"><i class="fa fa-trash-o fa-fw"></i>删除
-                </button>
 
-                <button id="detail_btn" type="button" class="btn btn-outline btn-default pull-right">查看应聘人员名单</button>
             </form>
 
         </div>
@@ -75,15 +87,15 @@
                                 <thead>
                                 <tr>
                                     <th data-field="state" data-checkbox="true"></th>
-                                    <th data-field="name" data-switchable="false">编号</th>
-                                    <th data-field="price" data-switchable="false">需求岗位</th>
+                                    <th data-field="name" data-switchable="false">工号</th>
+                                    <th data-field="price" data-switchable="false">姓名</th>
 
-                                    <th data-field="column3" data-visible="true">需求人数</th>
-                                    <th data-field="column4" data-visible="false">申请人</th>
-                                    <th data-field="column5" data-visible="false">岗位现有人数</th>
-                                    <th data-field="column6" data-visible="true">到岗日期</th>
-                                    <th data-field="column7" data-visible="false">职责要求</th>
-                                    <th data-field="column8" data-visible="true">发布状态</th>
+                                    <th data-field="column3" data-visible="true">部门</th>
+                                    <th data-field="column4" data-visible="false">岗位</th>
+                                    <th data-field="column5" data-visible="false">交接人</th>
+                                    <th data-field="column6" data-visible="true">入职时间</th>
+                                    <th data-field="column7" data-visible="false">离职时间</th>
+                                    <th data-field="column8" data-visible="true">离职原因</th>
 
                                     <th data-field="column9" data-switchable="false">操作</th>
                                 </tr>
@@ -92,38 +104,16 @@
                                 <tbody>
                                 <tr>
                                     <td></td>
-                                    <td>1</td>
-                                    <td>web</td>
-                                    <td>22</td>
-
-                                    <td>sugar</td>
-                                    <td>5</td>
-                                    <td>2017.06.01</td>
-
-                                    <td>html\css\js</td>
-                                    <td>已发布</td>
-                                    <td>
-                                        <button class="btn btn-info edit_btn" type="button">
-                                            <i class="fa fa-pencil fa-fw"></i>编辑
-                                        </button>
-                                        <button class="btn btn-danger del_btn" type="button">
-                                            <i class="fa fa-trash fa-fw"></i></i>删除
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td></td>
                                     <td>2</td>
-                                    <td>web</td>
-                                    <td>22</td>
-
                                     <td>sugar</td>
-                                    <td>5</td>
+                                    <td>技术部</td>
+
+                                    <td>web</td>
+                                    <td>candy</td>
                                     <td>2017.06.01</td>
 
-                                    <td>html\css\js</td>
-                                    <td>已发布</td>
+                                    <td>2017.08.01</td>
+                                    <td>哈哈哈</td>
                                     <td>
                                         <button class="btn btn-info edit_btn" type="button">
                                             <i class="fa fa-pencil fa-fw"></i>编辑
@@ -147,7 +137,7 @@
 
 <!--编辑弹框 start-->
 <div id="edit_box">
-    <h2>编辑招聘信息</h2>
+    <h2>编辑离职信息</h2>
     <form>
         <div class="form-group">
             <div class="col-sm-6">
@@ -159,56 +149,49 @@
 
         <div class="from-group">
             <div class="col-sm-6">
-                <label for="e_demandJob">需求岗位:</label>
-                <input class="form-control" type="text" placeholder="请输入需求岗位" id="e_demandJob">
+                <label for="e_stuffName">姓名:</label>
+                <input class="form-control" type="text" placeholder="请输入姓名" id="e_stuffName">
             </div>
 
             <div class="col-sm-6">
-                <label for="e_demandNum">需求人数:</label>
-                <input class="form-control" type="text" placeholder="请输入需求人数" id="e_demandNum">
-            </div>
-        </div>
-
-        <div class="from-group">
-            <div class="col-sm-6">
-                <label for="e_existNum">现有人数:</label>
-                <input class="form-control" type="text" placeholder="10" id="e_existNum" readonly>
-            </div>
-            <div class="col-sm-6">
-                <label for="e_arrivalDate">到岗日期:</label>
-                <input class="form-control" type="text" placeholder="请输入到岗日期" id="e_arrivalDate">
-            </div>
-        </div>
-
-        <div class="from-group">
-            <div class="col-sm-6">
-                <label for="e_applycant">申 请 人 :</label>
-                <input class="form-control" type="text" placeholder="请输入申请人" id="e_applycant">
-            </div>
-
-            <div class="col-sm-6">
-                <label for="e_recruitStatus">发布状态:</label>
-                <select name="e_wedding" id="e_recruitStatus" class="form-control">
-                    <option value="0">未发布</option>
-                    <option value="1">已发布</option>
+                <label for="e_stuffDepart">所在部门:</label>
+                <select name="e_stuffDepart" id="e_stuffDepart" class="form-control">
+                    <option value="0">技术部</option>
+                    <option value="1">财务部</option>
                 </select>
             </div>
         </div>
 
-
         <div class="from-group">
-            <div class="col-sm-12">
-                <label for="e_jobRequest" style="vertical-align: top">职责要求: </label>
-                <textarea name="e_jobRequest" id="e_jobRequest" cols="30" rows="10" style="resize:none;"></textarea>
+            <div class="col-sm-6">
+                <label for="e_stuffDuty">岗位:</label>
+                <input class="form-control" type="text" placeholder="请输入岗位" id="e_stuffDuty">
+            </div>
+            <div class="col-sm-6">
+                <label for="e_dimissDate">离职时间:</label>
+                <input class="form-control" type="text" placeholder="请输入到岗日期" id="e_dimissDate">
             </div>
         </div>
 
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="e_dimissInterface">交 接 人 :</label>
+                <input class="form-control" type="text" placeholder="请输入交接人" id="e_dimissInterface">
+            </div>
+        </div>
+        <div class="from-group">
+            <div class="col-sm-12">
+                <label for="e_dimissReason" style="vertical-align: top">离职原因:</label>
+                <textarea name="e_dimissReason" id="e_dimissReason" cols="30" rows="10" style="resize:none;"></textarea>
+            </div>
+        </div>
 
         <div class="from-group">
             <div class="col-sm-6 text-center">
                 <button class="btn btn-primary btn-lg" type="button">修改</button>
 
             </div>
+
             <div class="col-sm-6 text-center">
                 <button id="edit_closeBtn" class="btn btn-default btn-lg" type="button">取消</button>
             </div>
@@ -220,51 +203,46 @@
 
 <!--增加弹框 start-->
 <div id="add_box">
-    <h2>增加招聘信息</h2>
+    <h2>增加离职信息</h2>
     <form>
 
         <div class="from-group">
             <div class="col-sm-6">
-                <label for="a_demandJob">需求岗位:</label>
-                <input class="form-control" type="text" placeholder="请输入需求岗位" id="a_demandJob">
+                <label for="a_stuffName">姓名:</label>
+                <input class="form-control" type="text" placeholder="请输入姓名" id="a_stuffName">
             </div>
 
             <div class="col-sm-6">
-                <label for="a_demandNum">需求人数:</label>
-                <input class="form-control" type="text" placeholder="请输入需求人数" id="a_demandNum">
-            </div>
-        </div>
-
-        <div class="from-group">
-            <div class="col-sm-6">
-                <label for="a_existNum">现有人数:</label>
-                <input class="form-control" type="text" placeholder="10" id="a_existNum">
-            </div>
-            <div class="col-sm-6">
-                <label for="a_arrivalDate">到岗日期:</label>
-                <input class="form-control" type="text" placeholder="请输入到岗日期" id="a_arrivalDate">
-            </div>
-        </div>
-
-        <div class="from-group">
-            <div class="col-sm-6">
-                <label for="a_applycant">申 请 人 :</label>
-                <input class="form-control" type="text" placeholder="请输入申请人" id="a_applycant">
-            </div>
-
-            <div class="col-sm-6">
-                <label for="a_recruitStatus">发布状态:</label>
-                <select name="e_wedding" id="a_recruitStatus" class="form-control">
-                    <option value="0">未发布</option>
-                    <option value="1">已发布</option>
+                <label for="a_stuffDepart">所在部门:</label>
+                <select name="a_stuffDepart" id="a_stuffDepart" class="form-control">
+                    <option value="0">技术部</option>
+                    <option value="1">财务部</option>
                 </select>
             </div>
         </div>
 
         <div class="from-group">
+            <div class="col-sm-6">
+                <label for="a_stuffDuty">岗位:</label>
+                <input class="form-control" type="text" placeholder="请输入岗位" id="a_stuffDuty">
+            </div>
+            <div class="col-sm-6">
+                <label for="a_dimissDate">离职时间:</label>
+                <input class="form-control" type="date" placeholder="离职时间" id="a_dimissDate">
+            </div>
+        </div>
+
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="a_dimissInterface">交 接 人 :</label>
+                <input class="form-control" type="text" placeholder="请输入交接人" id="a_dimissInterface">
+            </div>
+        </div>
+
+        <div class="from-group">
             <div class="col-sm-12">
-                <label for="a_jobRequest" style="vertical-align: top">职责要求: </label>
-                <textarea name="e_jobRequest" id="a_jobRequest" cols="30" rows="10" style="resize:none;"></textarea>
+                <label for="a_dimissReason" style="vertical-align: top">离职原因:</label>
+                <textarea name="a_dimissReason" id="a_dimissReason" cols="30" rows="10" style="resize:none;"></textarea>
             </div>
         </div>
 
