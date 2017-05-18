@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="keywords" content="人力资源管理系统,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="人力资源管理系统是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，
+    她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <title>填写录用信息</title>
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html"/>
+    <![endif]-->
+
+    <!--<link rel="shortcut icon" href="favicon.ico">-->
+    <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" href="css_mine/personnelManagement.css">
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInDown">
+    <div id="staff_detail" class="ibox">
+        <div class="ibox-content">
+            <h1>
+                填写员工录用信息
+                <a class="pull-right" href="recruitInfo.html" style="font-size: 13px"> 返回招聘信息<<</a>
+                <a class="pull-right" href="applicantInfo.html" style="font-size: 13px;margin-right: 10px">返回应聘人员名单<<</a>
+            </h1>
+            <h3>1、员工基本信息</h3>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="hire_stuffName">姓名:</label>
+                    <input class="form-control" type="text" placeholder="请输入姓名" id="hire_stuffName">
+                </div>
+                <div class="col-sm-4">
+                    <label for="hire_stuffAge">年龄：</label>
+                    <input class="form-control" type="text" placeholder="请输入年龄" id="hire_stuffAge">
+                </div>
+                <div class="clearfix hidden-xs"></div>
+
+                <div class="col-sm-4">
+                    <label for="hire_sex">性别：</label>
+                    <select name="hire_sex" id="hire_sex" class="form-control">
+                        <option value="0">男</option>
+                        <option value="1">女</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="hire_stuffNation">民族：</label>
+                    <input class="form-control" type="text" placeholder="请输入民族" id="hire_stuffNation">
+                </div>
+                <div class="col-sm-4">
+                    <label for="hire_stuffAdd">地址：</label>
+                    <input class="form-control" type="text" placeholder="请输入地址" id="hire_stuffAdd">
+                </div>
+                <div class="clearfix hidden-xs"></div>
+
+                <div class="col-sm-4">
+                    <label for="hire_wedding">婚况:</label>
+                    <select name="hire_wedding" id="hire_wedding" class="form-control">
+                        <option value="0">未婚</option>
+                        <option value="1">已婚</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="hire_stuffTel">电话:</label>
+                    <input class="form-control" type="text" placeholder="请输入电话" id="hire_stuffTel">
+                </div>
+                <div class="col-sm-4">
+                    <label for="hire_stuffEmail">邮箱:</label>
+                    <input class="form-control" type="email" placeholder="请输入邮箱" id="hire_stuffEmail">
+                </div>
+                <div class="clearfix hidden-xs"></div>
+
+                <div class="col-sm-4">
+                    <label for="hire_stuffGrad">职称:</label>
+                    <input class="form-control" type="text" placeholder="请输入职称" id="hire_stuffGrad">
+                </div>
+                <div class="col-sm-8">
+                    <label for="hire_stuffSkill">技能:</label>
+                    <input class="form-control" type="text" placeholder="请输入技能" id="hire_stuffSkill">
+                </div>
+                <div class="clearfix hidden-xs"></div>
+            </div>
+
+            <h3>2、员工教育背景信息</h3>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="hire_stuffColleage">毕业院校:</label>
+                    <input class="form-control" type="text" placeholder="请输入毕业院校" id="hire_stuffColleage">
+                </div>
+                <div class="col-sm-4">
+                    <label for="hire_stuffProfession">专业:</label>
+                    <input class="form-control" type="text" placeholder="请输入专业" id="hire_stuffProfession">
+                </div>
+                <div class="col-sm-4">
+                    <label for="hire_stuffEdu">学历:</label>
+                    <select name="hire_stuffEdu" id="hire_stuffEdu" class="form-control">
+                        <option value="0">研究生以上</option>
+                        <option value="1">研究生</option>
+                        <option value="2">本科</option>
+                        <option value="1">专科</option>
+                    </select>
+                </div>
+                <div class="clearfix hidden-xs"></div>
+            </div>
+
+            <h3>3、员工岗位信息</h3>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label for="hire_stuffEdu">所在部门:</label>
+                    <select name="hire_stuffDepart" id="hire_stuffDepart" class="form-control">
+                        <option value="0">技术部</option>
+                        <option value="1">财务部</option>
+                        <option value="2">运营部</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="hire_stuffDuty">职务:</label>
+                    <input class="form-control" type="text" placeholder="请输入职务" id="hire_stuffDuty">
+                </div>
+                <div class="col-sm-4">
+                    <label for="hire_stuffStatus">任职状态：</label>
+                    <select name="hire_stuffStatus" id="hire_stuffStatus" class="form-control">
+                        <option value="0">试用期</option>
+                        <option value="1">实习期</option>
+                        <option value="2">正式员工</option>
+                    </select>
+                </div>
+                <div class="clearfix hidden-xs"></div>
+
+                <div class="col-sm-4">
+                    <label for="hire_stuffEntryDate">入职日期：</label>
+                    <input class="form-control" type="date" placeholder="请输入入职日期" id="hire_stuffEntryDate">
+                </div>
+                <div class="col-sm-4">
+                    <label for="hire_contractBegin">合同开始日期：</label>
+                    <input class="form-control" type="date" placeholder="请输入合同开始日期" id="hire_contractBegin">
+                </div>
+                <div class="col-sm-4">
+                    <label for="hire_contactEnd">合同结束日期：</label>
+                    <input class="form-control" type="date" placeholder="请输入合同结束日期" id="hire_contactEnd">
+                </div>
+                <div class="clearfix hidden-xs"></div>
+
+                <div class="col-sm-4">
+                    <label for="hire_stuffMoney">薪酬：</label>
+                    <input class="form-control" type="text" placeholder="请输入薪酬" id="hire_stuffMoney">
+                </div>
+                <div class="clearfix hidden-xs"></div>
+
+                <br><br>
+                <div class="col-sm-6 text-center">
+                    <button id="hire_btn" class="btn btn-primary btn-lg" type="button">确定</button>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <button class="btn btn-default btn-lg" type="button">取消</button>
+                </div>
+                <div class="clearfix hidden-xs"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<!--<script src="js/plugins/layer/layer.min.js"></script>-->
+<script src="js/content.min.js?v=1.0.0"></script>
+<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+<script>
+    //录用按钮 弹框
+    $("#hire_btn").click(function () {
+        swal({
+            title: "您确定要录用吗",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#A5DC86",
+            confirmButtonText: "录用",
+            cancelButtonText: "取消",
+            closeOnConfirm: false
+        }, function () {
+            swal("录用成功！", "哈哈，又多了一个小伙伴。", "success")
+        })
+    });
+</script>
+
+
+</body>
+</html>

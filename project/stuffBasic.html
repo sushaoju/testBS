@@ -20,19 +20,10 @@
     <link href="css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link rel="stylesheet" href="css_mine/personnelManagement.css">
 
-    <style>
-        #edit_box input,
-        #edit_box select{
-            width: 60%;
-            display: inline-block;
-        }
-
-        #edit_box .col-sm-6{
-            margin-bottom: 20px;
-        }
-    </style>
 </head>
+
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInDown">
 
@@ -69,7 +60,7 @@
                     </select>
                 </div>
 
-                <button class="btn btn-info" type="button">查询</button>
+                <button class="btn btn-info" type="button"><i class="fa fa-search fa-fw"></i>查询</button>
             </form>
 
         </div>
@@ -171,13 +162,14 @@
 
 <!--编辑按钮 弹框-->
 <div id="edit_box">
-
+    <h2>编辑员工信息</h2>
     <form>
         <div class="form-group">
             <label class="col-sm-2" for="e_stuffID">工号:</label>
             <span class="col-sm-10" id="e_stuffID">s001</span>
             <br>
         </div>
+<<<<<<< HEAD
         <div class="clearfix hidden-xs"></div>
 
         <div class="col-sm-6">
@@ -187,9 +179,36 @@
         <div class="col-sm-6">
             <label for="e_stuffAge">年龄:</label>
             <input class="form-control" type="text" placeholder="请输入年龄" id="e_stuffAge">
-        </div>
-        <div class="clearfix hidden-xs"></div>
+=======
 
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="e_stuffName">姓名:</label>
+                <input class="form-control" type="text" placeholder="请输入姓名" id="e_stuffName">
+            </div>
+
+            <div class="col-sm-6">
+                <label for="e_stuffAge">年龄:</label>
+                <input class="form-control" type="text" placeholder="请输入年龄" id="e_stuffAge">
+            </div>
+        </div>
+
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="e_sex">性别:</label>
+                <select name="e_sex" id="e_sex" class="form-control">
+                    <option value="0">男</option>
+                    <option value="1">女</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label for="e_stuffNation">民族:</label>
+                <input class="form-control" type="text" placeholder="请输入民族" id="e_stuffNation">
+            </div>
+>>>>>>> 949081bdf810fec1f981f147f119096623983ac8
+        </div>
+
+<<<<<<< HEAD
         <div class="col-sm-6">
             <label for="e_sex">性别:</label>
             <select name="e_sex" id="e_sex" class="form-control">
@@ -200,19 +219,31 @@
         <div class="col-sm-6">
             <label for="e_stuffNation">民族:</label>
             <input class="form-control" type="text" placeholder="请输入民族" id="e_stuffNation">
-        </div>
-        <div class="clearfix hidden-xs"></div>
+=======
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="e_stuffTel">电话:</label>
+                <input class="form-control" type="text" placeholder="请输入电话" id="e_stuffTel">
+            </div>
 
-        <div class="col-sm-6">
-            <label for="e_stuffAdd">地址:</label>
-            <input class="form-control" type="text" placeholder="请输入地址" id="e_stuffAdd">
+            <div class="col-sm-6">
+                <label for="e_stuffEmail">邮箱:</label>
+                <input class="form-control" type="email" placeholder="请输入邮箱" id="e_stuffEmail">
+            </div>
+>>>>>>> 949081bdf810fec1f981f147f119096623983ac8
         </div>
-        <div class="col-sm-6">
-            <label for="e_stuffTel">电话:</label>
-            <input class="form-control" type="text" placeholder="请输入电话" id="e_stuffTel">
-        </div>
-        <div class="clearfix hidden-xs"></div>
 
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="e_wedding">婚况:</label>
+                <select name="e_wedding" id="e_wedding" class="form-control">
+                    <option value="0">未婚</option>
+                    <option value="1">已婚</option>
+                </select>
+            </div>
+        </div>
+
+<<<<<<< HEAD
         <div class="col-sm-6">
             <label for="e_stuffEmail">邮箱:</label>
             <input class="form-control" type="email" placeholder="请输入邮箱" id="e_stuffEmail">
@@ -225,9 +256,16 @@
                 <option value="2">本科</option>
                 <option value="1">专科</option>
             </select>
+=======
+        <div class="from-group">
+            <div class="col-sm-12">
+                <label for="e_stuffAdd">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址: </label>
+                <input class="form-control" type="text" placeholder="请输入地址" id="e_stuffAdd">
+            </div>
+>>>>>>> 949081bdf810fec1f981f147f119096623983ac8
         </div>
-        <div class="clearfix hidden-xs"></div>
 
+<<<<<<< HEAD
         <div class="col-sm-6">
             <label for="e_stuffSkill">技能:</label>
             <input class="form-control" type="text" placeholder="请输入技能" id="e_stuffSkill">
@@ -235,32 +273,71 @@
         <div class="col-sm-6">
             <label for="e_stuffProfession">专业:</label>
             <input class="form-control" type="text" placeholder="请输入专业" id="e_stuffProfession">
+=======
+        <div class="from-group">
+            <div class="col-sm-12">
+                <label for="e_stuffColleage">毕业院校:</label>
+                <input class="form-control" type="text" placeholder="请输入毕业院校" id="e_stuffColleage">
+            </div>
         </div>
-        <div class="clearfix hidden-xs"></div>
 
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="e_stuffProfession">专业:</label>
+                <input class="form-control" type="text" placeholder="请输入专业" id="e_stuffProfession">
+            </div>
+
+            <div class="col-sm-6">
+                <label for="e_stuffEdu">学历:</label>
+                <select name="e_stuffEdu" id="e_stuffEdu" class="form-control">
+                    <option value="0">研究生以上</option>
+                    <option value="1">研究生</option>
+                    <option value="2">本科</option>
+                    <option value="1">专科</option>
+                </select>
+            </div>
+>>>>>>> 949081bdf810fec1f981f147f119096623983ac8
+        </div>
+
+<<<<<<< HEAD
         <div class="col-sm-6">
             <label for="e_stuffGrade">职称:</label>
             <input class="form-control" type="text" placeholder="请输入职称" id="e_stuffGrade">
+=======
+        <div class="from-group">
+            <div class="col-sm-12">
+                <label for="e_stuffGrad">职称:</label>
+                <input class="form-control" type="text" placeholder="请输入职称" id="e_stuffGrad">
+            </div>
+>>>>>>> 949081bdf810fec1f981f147f119096623983ac8
         </div>
-        <div class="col-sm-6">
-            <label for="e_wedding">婚况:</label>
-            <select name="e_wedding" id="e_wedding" class="form-control">
-                <option value="0">未婚</option>
-                <option value="1">已婚</option>
-            </select>
+
+        <div class="from-group">
+            <div class="col-sm-12">
+                <label for="e_stuffSkill">技能:</label>
+                <input class="form-control" type="text" placeholder="请输入技能" id="e_stuffSkill">
+            </div>
         </div>
+<<<<<<< HEAD
         <div class="clearfix hidden-xs"></div>
 
         <div class="col-sm-6">
             <label for="e_stuffColleage">毕业院校:</label>
             <input class="form-control" type="text" placeholder="请输入毕业院校" id="e_stuffColleage">
+=======
+
+        <div class="from-group">
+            <div class="col-sm-6 text-center">
+                <button class="btn btn-primary btn-lg" type="button">确定</button>
+            </div>
+            <div class="col-sm-6 text-center">
+                <button id="edit_closeBtn" class="btn btn-default btn-lg" type="button">取消</button>
+            </div>
+>>>>>>> 949081bdf810fec1f981f147f119096623983ac8
         </div>
     </form>
 
 </div>
-
-<!--详情按钮 弹框-->
-<div id="detail_box"></div>
 
 
 <script src="js/jquery.min.js?v=2.1.4"></script>
@@ -279,15 +356,23 @@
     function alertEditBox() {
         layer.open({
             type: 1,
-            closeBtn: false,
+            closeBtn: true,
             title: false,
             area: ['600px', '400px'],
-            shadeClose: true, //点击遮罩关闭
+            shadeClose: false, //点击遮罩不关闭
             content: $('#edit_box')
         });
 
         $("#edit_box").show();
     }
+    $("#edit_closeBtn").click(function () {
+        $(".layui-layer-close2").click();
+    });
+
+    //详情按钮 跳转
+    $(".detail_btn").click(function () {
+        location.href = "staffBasicDetail.html";
+    });
 </script>
 </body>
 </html>
