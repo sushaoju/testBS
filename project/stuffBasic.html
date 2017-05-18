@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <title>员工基本信息</title>
+
+    <meta name="keywords" content="人力资源管理系统,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="人力资源管理系统是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html"/>
+    <![endif]-->
+
+    <!--<link rel="shortcut icon" href="favicon.ico">-->
+    <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+
+    <style>
+        #edit_box input,
+        #edit_box select{
+            width: 60%;
+            display: inline-block;
+        }
+
+        #edit_box .col-sm-6{
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInDown">
+
+    <!--编辑区 start-->
+    <div>
+        <div class="ibox-title">
+            <h5>查询条件</h5>
+        </div>
+        <div class="ibox-content">
+
+            <form role="form" class="form-inline">
+                <div class="form-group">
+                    <!--<label for="stuffID" class="sr-only">工号</label>-->
+                    <label for="stuffID">工号:</label>
+                    <input type="text" placeholder="请输入用户名" id="stuffID" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="stuffName">姓名:</label>
+                    <input type="text" placeholder="请输入用户名" id="stuffName" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="department_name">部门名称:</label>
+
+                    <select name="department_name" id="department_name" class="form-control"
+                            style="display:inline-block;width:150px">
+                        <option value="0">全部</option>
+                        <option value="1">技术中心</option>
+                        <option value="2">财务部</option>
+                        <option value="3">运营部</option>
+                        <option value="4">市场部</option>
+                        <option value="5">人事部</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-info" type="button">查询</button>
+            </form>
+
+        </div>
+    </div>
+    <!--编辑区 end-->
+
+
+    <!--查询结果区 start-->
+    <div class="ibox">
+
+        <div class="ibox-title">
+            <h5>查询结果</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="ibox-content">
+            <div class="row row-lg">
+                <div class="col-sm-12">
+                    <div class="example-wrap">
+                        <div class="example">
+                            <table id="exampleTableColumns" data-mobile-responsive="true">
+                                <thead>
+                                <tr>
+                                    <th data-field="state" data-checkbox="true"></th>
+                                    <th data-field="name" data-switchable="false">工号</th>
+                                    <th data-field="price" data-switchable="false">姓名</th>
+
+                                    <th data-field="column3" data-visible="false">年龄</th>
+                                    <th data-field="column4" data-visible="false">性别</th>
+                                    <th data-field="column5" data-visible="true">部门</th>
+                                    <th data-field="column6" data-visible="true">职务</th>
+                                    <th data-field="column7" data-visible="true">任职状态</th>
+                                    <th data-field="column8" data-visible="false">联系方式</th>
+
+                                    <th data-field="column9" data-switchable="false">操作</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>1</td>
+                                    <td>苏少菊</td>
+                                    <td>22</td>
+
+                                    <td>女</td>
+                                    <td>技术中心</td>
+                                    <td>web</td>
+
+                                    <td>实习生</td>
+                                    <td>18888888888</td>
+                                    <td>
+                                        <button class="btn btn-info edit_btn" type="button">
+                                            <i class="fa fa-pencil fa-fw"></i>编辑
+                                        </button>
+                                        <button class="btn btn-primary detail_btn" type="button">
+                                            <i class="fa fa-list fa-fw"></i>详情
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td>2</td>
+                                    <td>苏少菊</td>
+                                    <td>22</td>
+
+                                    <td>女</td>
+                                    <td>技术中心</td>
+                                    <td>web</td>
+
+                                    <td>实习生</td>
+                                    <td>18888888888</td>
+                                    <td>
+                                        <button class="btn btn-info " type="button">
+                                            <i class="fa fa-pencil fa-fw"></i>编辑
+                                        </button>
+                                        <button class="btn btn-primary " type="button">
+                                            <i class="fa fa-list fa-fw"></i>详情
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--查询结果区 end-->
+</div>
+
+
+<!--编辑按钮 弹框-->
+<div id="edit_box">
+
+    <form>
+        <div class="form-group">
+            <label class="col-sm-2" for="e_stuffID">工号:</label>
+            <span class="col-sm-10" id="e_stuffID">s001</span>
+            <br>
+        </div>
+        <div class="clearfix hidden-xs"></div>
+
+        <div class="col-sm-6">
+            <label for="e_stuffName">姓名:</label>
+            <input class="form-control" type="text" placeholder="请输入用户名" id="e_stuffName">
+        </div>
+        <div class="col-sm-6">
+            <label for="e_stuffAge">年龄:</label>
+            <input class="form-control" type="text" placeholder="请输入年龄" id="e_stuffAge">
+        </div>
+        <div class="clearfix hidden-xs"></div>
+
+        <div class="col-sm-6">
+            <label for="e_sex">性别:</label>
+            <select name="e_sex" id="e_sex" class="form-control">
+                <option value="0">男</option>
+                <option value="1">女</option>
+            </select>
+        </div>
+        <div class="col-sm-6">
+            <label for="e_stuffNation">民族:</label>
+            <input class="form-control" type="text" placeholder="请输入民族" id="e_stuffNation">
+        </div>
+        <div class="clearfix hidden-xs"></div>
+
+        <div class="col-sm-6">
+            <label for="e_stuffAdd">地址:</label>
+            <input class="form-control" type="text" placeholder="请输入地址" id="e_stuffAdd">
+        </div>
+        <div class="col-sm-6">
+            <label for="e_stuffTel">电话:</label>
+            <input class="form-control" type="text" placeholder="请输入电话" id="e_stuffTel">
+        </div>
+        <div class="clearfix hidden-xs"></div>
+
+        <div class="col-sm-6">
+            <label for="e_stuffEmail">邮箱:</label>
+            <input class="form-control" type="email" placeholder="请输入邮箱" id="e_stuffEmail">
+        </div>
+        <div class="col-sm-6">
+            <label for="e_stuffEdu">学历:</label>
+            <select name="e_wedding" id="e_stuffEdu" class="form-control">
+                <option value="0">研究生以上</option>
+                <option value="1">研究生</option>
+                <option value="2">本科</option>
+                <option value="1">专科</option>
+            </select>
+        </div>
+        <div class="clearfix hidden-xs"></div>
+
+        <div class="col-sm-6">
+            <label for="e_stuffSkill">技能:</label>
+            <input class="form-control" type="text" placeholder="请输入技能" id="e_stuffSkill">
+        </div>
+        <div class="col-sm-6">
+            <label for="e_stuffProfession">专业:</label>
+            <input class="form-control" type="text" placeholder="请输入专业" id="e_stuffProfession">
+        </div>
+        <div class="clearfix hidden-xs"></div>
+
+        <div class="col-sm-6">
+            <label for="e_stuffGrade">职称:</label>
+            <input class="form-control" type="text" placeholder="请输入职称" id="e_stuffGrade">
+        </div>
+        <div class="col-sm-6">
+            <label for="e_wedding">婚况:</label>
+            <select name="e_wedding" id="e_wedding" class="form-control">
+                <option value="0">未婚</option>
+                <option value="1">已婚</option>
+            </select>
+        </div>
+        <div class="clearfix hidden-xs"></div>
+
+        <div class="col-sm-6">
+            <label for="e_stuffColleage">毕业院校:</label>
+            <input class="form-control" type="text" placeholder="请输入毕业院校" id="e_stuffColleage">
+        </div>
+    </form>
+
+</div>
+
+<!--详情按钮 弹框-->
+<div id="detail_box"></div>
+
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/plugins/layer/layer.min.js"></script>
+<script src="js/content.min.js?v=1.0.0"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/demo/bootstrap-table-demo.min.js"></script>
+
+<script>
+
+    //编辑按钮 弹框
+    $(".edit_btn").click(alertEditBox);
+    function alertEditBox() {
+        layer.open({
+            type: 1,
+            closeBtn: false,
+            title: false,
+            area: ['600px', '400px'],
+            shadeClose: true, //点击遮罩关闭
+            content: $('#edit_box')
+        });
+
+        $("#edit_box").show();
+    }
+</script>
+</body>
+</html>

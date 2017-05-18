@@ -277,7 +277,7 @@ CREATE TABLE `stuffinfo` (
   `stuffWedding` varchar(5) CHARACTER SET utf8 NOT NULL,
   `stuffSkill` varchar(225) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of stuffinfo
