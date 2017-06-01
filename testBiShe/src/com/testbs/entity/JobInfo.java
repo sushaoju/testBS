@@ -108,17 +108,46 @@ public class JobInfo {
 	}
 	
 
-	public JobInfo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+
 	
-	//¸üÐÂ
-	public JobInfo(String stuffID, String adjustJob, String adjustMoney) {
+	
+	
+	
+	
+	public JobInfo(String stuffID, String stuffName, String stuffDepart,
+			String stuffDuty, String stuffStatus, double stuffMoney,
+			String adjustJob, String adjustMoney) {
 		super();
 		this.stuffID = stuffID;
+		this.stuffName = stuffName;
+		this.stuffDepart = stuffDepart;
+		this.stuffDuty = stuffDuty;
+		this.stuffStatus = stuffStatus;
+		this.stuffMoney = stuffMoney;
 		this.adjustJob = adjustJob;
 		this.adjustMoney = adjustMoney;
 	}
 	
+	
+	
+	
+	public JobInfo(int id, String stuffID, String stuffDepart, String stuffDuty,
+			String stuffStatus, String contractBegin, String contractEnd,
+			double stuffMoney, String adjustJob, String adjustMoney) {
+		super();
+		this.id = id;
+		this.stuffID = stuffID;
+		this.stuffDepart = stuffDepart;
+		this.stuffDuty = stuffDuty;
+		this.stuffStatus = stuffStatus;
+		this.contractBegin = contractBegin;
+		this.contractEnd = contractEnd;
+		this.stuffMoney = stuffMoney;
+		this.adjustJob = adjustJob;
+		this.adjustMoney = adjustMoney;
+	}
+	public JobInfo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 }

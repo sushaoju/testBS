@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 
+
 import com.testbs.entity.JobInfo;
 import com.testbs.service.JobInfoService;
 
@@ -104,6 +105,29 @@ public class JobInfoServlet extends HttpServlet {
 			out.close();
 			
 		} 
+		
+		
+		 else if (reqCode.equals("findJobInfoByCondition")) {
+				
+				String stuffName = req.getParameter("stuffName"); //姓名
+				String stuffID = req.getParameter("stuffID"); // 工号
+				String stuffDepart = req.getParameter("stuffDepart"); // 部门
+				
+				JobInfoService jobInfoService = new JobInfoService();
+				List<JobInfo> jobInfos = jobInfoService.findJobInfoByCondition(stuffID,stuffName,stuffDepart);
+		
+				JSONObject json = new JSONObject();
+				json.put("rows", jobInfos);
+				json.put("total",jobInfos.size());
+
+				resp.setContentType("text/html;charset=utf-8");
+				PrintWriter out = resp.getWriter();
+				out.write(json.toString());
+				out.close();
+			} 
+		
+		
+		
 		else if (reqCode.equals("findJobInfoById")) {
 			// 获取部门编号
 			String stuffID = req.getParameter("stuffID");
@@ -119,12 +143,19 @@ public class JobInfoServlet extends HttpServlet {
 		} 
 		else if (reqCode.equals("updateJobInfo")) {
 			// 提取数据
-//			int id = (Integer.parseInt(req.getParameter("id")));
+        	int id = Integer.parseInt(req.getParameter("id"));
 			String stuffID = req.getParameter("stuffID");
-			String adjustMoney = req.getParameter("adjustMoney");  
-			String adjustJob = req.getParameter("adjustJob");     
+		    String stuffDepart = req.getParameter("stuffDepart");
+	        String stuffDuty = req.getParameter("stuffDuty");
+		    String stuffStatus = req.getParameter("stuffStatus");
+		    Double stuffMoney =Double.parseDouble( req.getParameter("stuffMoney"));
+			String adjustJob = req.getParameter("adjadjustJobustMoney");  
+			String adjustMoney = req.getParameter("adjustMoney");   
+			String contractBegin = req.getParameter("contractBegin");  
+			String contractEnd = req.getParameter("contractEnd"); 
 			
-			JobInfo jobInfo = new JobInfo( stuffID,adjustJob,adjustMoney);
+			
+			JobInfo jobInfo = new JobInfo(id,stuffID, stuffDepart, stuffDuty,stuffStatus,contractBegin,contractEnd,stuffMoney,adjustJob, adjustMoney);
 			// 调用Model
 			
 			JobInfoService jobInfoService = new JobInfoService();

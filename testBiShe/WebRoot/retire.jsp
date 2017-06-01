@@ -45,24 +45,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="form-group">
                     <input type="text" placeholder="请输入工号" id="s_stuffID" class="form-control">
                     <input type="text" placeholder="请输入姓名" id="s_stuffName" class="form-control">
-                    <select name="s_stuffDepart" id="s_stuffDepart" class="form-control">
-                        <option value="0">技术部</option>
-                        <option value="1">财务部</option>
-                    </select>
-
-                    <label for="">入职日期：</label>
-                    <input type="date" class="form-control" placeholder="开始日期"> ——
-                    <input type="date" class="form-control" placeholder="结束日期">
+                    <select name="s_stuffDepart" id="s_stuffDepart" class="form-control"></select>
                 </div>
                 <div class="form-group" style="margin-top: 10px">
-                    <label for="">退休日期：</label>
-                    <input type="date" class="form-control" placeholder="开始日期"> ——
-                    <input type="date" class="form-control" placeholder="结束日期" style="margin-right: 15px">
 
-                    <button class="btn btn-info" type="button"><i class="fa fa-search fa-fw"></i>查询</button>
+                    <button id="sel_btn" class="btn btn-info" type="button"><i class="fa fa-search fa-fw"></i>查询</button>
                     <button id="applicant_addBtn" class="btn btn-primary" type="button"><i class="fa fa-plus fa-fw"></i>增加
-                    </button>
-                    <button id="applicant_delBtn" class="btn btn-danger" type="button"><i class="fa fa-trash-o fa-fw"></i>删除
                     </button>
                 </div>
 
@@ -89,37 +77,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="ibox-content">
             <div class="row row-lg">
                 <div class="col-sm-12">
-                    <div class="example-wrap">
-                        <div class="example">
-                            <table id="exampleTableColumns" data-mobile-responsive="true">
+                            <table id="reture_tbl" data-mobile-responsive="true" class="table table-striped table-hover">
                                 <thead>
                                 <tr>
-                                    <th data-field="state" data-checkbox="true"></th>
-                                    <th data-field="name" data-switchable="false">工号</th>
-                                    <th data-field="price" data-switchable="false">姓名</th>
+                                    <th>工号</th>
+                                    <th>姓名</th>
 
-                                    <th data-field="column3" data-visible="true">部门</th>
-                                    <th data-field="column4" data-visible="false">岗位</th>
-                                    <th data-field="column5" data-visible="false">交接人</th>
-                                    <th data-field="column6" data-visible="true">入职时间</th>
-                                    <th data-field="column7" data-visible="false">退休时间</th>
-                                    <th data-field="column8" data-visible="true">退休金</th>
+                                    <th>部门</th>
+                                    <th>岗位</th>
+                                    <th>交接人</th>
+                                    <th>入职时间</th>
+                                    <th>退休时间</th>
+                                    <th>退休金</th>
 
-                                    <th data-field="column9" data-switchable="false">操作</th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                 <tr>
-                                    <td></td>
                                     <td>2</td>
                                     <td>sugar</td>
                                     <td>技术部</td>
 
                                     <td>web</td>
                                     <td>candy</td>
-                                    <td>2017.06.01</td>
-
+                                    <td>2017.07.01</td>
                                     <td>2017.08.01</td>
                                     <td>4000</td>
                                     <td>
@@ -133,8 +116,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -150,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="form-group">
             <div class="col-sm-6">
                 <label for="e_stuffID">编号:</label>
-                <span id="e_stuffID">s001</span>
+                <span id="e_stuffID"></span>
             </div>
             <div class="clearfix hidden-xs"></div>
         </div>
@@ -158,26 +139,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="from-group">
             <div class="col-sm-6">
                 <label for="e_stuffName">姓 名 :</label>
-                <input class="form-control" type="text" placeholder="请输入姓名" id="e_stuffName">
+				 <span id="e_stuffName"></span>
             </div>
 
             <div class="col-sm-6">
                 <label for="e_stuffDepart">所在部门:</label>
-                <select name="e_stuffDepart" id="e_stuffDepart" class="form-control">
-                    <option value="0">技术部</option>
-                    <option value="1">财务部</option>
-                </select>
+				<span id="e_stuffDepart"></span>
             </div>
         </div>
 
         <div class="from-group">
             <div class="col-sm-6">
                 <label for="e_stuffDuty">岗 位 :</label>
-                <input class="form-control" type="text" placeholder="请输入岗位" id="e_stuffDuty">
+				<span id="e_stuffDuty"></span>
+            </div>
+            <div class="col-sm-6">
+                <label for="e_stuffentryDate">入职时间:</label>
+                <input class="form-control" type="date" placeholder="请输入入职时间" id="e_stuffentryDate">
             </div>
             <div class="col-sm-6">
                 <label for="e_retireDate">退休时间:</label>
-                <input class="form-control" type="text" placeholder="请输入退休时间" id="e_retireDate">
+                <input class="form-control" type="date" placeholder="请输入退休时间" id="e_retireDate">
             </div>
         </div>
 
@@ -188,13 +170,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div class="col-sm-6">
                 <label for="e_retireMoney">退 休 金: </label>
-                <input class="form-control" type="text" placeholder="请输入交接人" id="e_retireMoney">
+                <input class="form-control" type="text" placeholder="请输入退休金" id="e_retireMoney">
             </div>
         </div>
 
         <div class="from-group">
             <div class="col-sm-6 text-center">
-                <button class="btn btn-primary btn-lg" type="button">修改</button>
+                <button class="btn btn-primary btn-lg" type="button" id="editSubmit_btn">修改</button>
 
             </div>
 
@@ -211,26 +193,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="add_box">
     <h2>增加退休信息</h2>
     <form>
+	
+	 <div class="from-group">
+            <div class="col-sm-6">
+                <label for="a_stuffID">员工工号:</label>
+                <input class="form-control" type="text" placeholder="请输入员工工号" id="a_stuffID">
+            </div>
+		</div>
+	   <div class="clearfix hidden-xs"></div>
 
         <div class="from-group">
             <div class="col-sm-6">
                 <label for="a_stuffName">姓 名 :</label>
-                <input class="form-control" type="text" placeholder="请输入姓名" id="a_stuffName">
+				<span id="a_stuffName"></span>
             </div>
 
             <div class="col-sm-6">
                 <label for="a_stuffDepart">所在部门:</label>
-                <select name="a_stuffDepart" id="a_stuffDepart" class="form-control">
-                    <option value="0">技术部</option>
-                    <option value="1">财务部</option>
-                </select>
+				<span id="a_stuffDepart"></span>
             </div>
         </div>
 
         <div class="from-group">
             <div class="col-sm-6">
                 <label for="a_stuffDuty">岗 位 :</label>
-                <input class="form-control" type="text" placeholder="请输入岗位" id="a_stuffDuty">
+				<span id="a_stuffDuty"></span>
+            </div>
+            <div class="col-sm-6">
+                <label for="a_stuffentryDate">入职时间:</label>
+                <input class="form-control" type="date" placeholder="请输入入职时间" id="a_stuffentryDate">
             </div>
             <div class="col-sm-6">
                 <label for="a_retireDate">退休时间:</label>
@@ -251,7 +242,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         <div class="from-group">
             <div class="col-sm-6 text-center">
-                <button class="btn btn-primary btn-lg" type="button">增加</button>
+                <button class="btn btn-primary btn-lg" type="button" id="addSubmit_btn">增加</button>
 
             </div>
             <div class="col-sm-6 text-center">
@@ -275,78 +266,472 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script>
 
-    //编辑按钮 弹框
-    $(".edit_btn").click(alertEditBox);
-    function alertEditBox() {
-        layer.open({
-            type: 1,
-            closeBtn: true,
-            title: false,
-            area: ['600px', '400px'],
-            shadeClose: false, //点击遮罩不关闭
-            content: $('#edit_box')
-        });
+$(function(){
+		//编辑按钮 弹框
+		$("#reture_tbl").on('click','.edit_btn',function(){
+			var stuffID=$(this).parent("td").parent("tr").find("td").eq(0).text();   //员工工号
+			var stuffName=$(this).parent("td").parent("tr").find("td").eq(1).text();   
+			var stuffDepart=$(this).parent("td").parent("tr").find("td").eq(2).text(); 
+            var stuffDuty=$(this).parent("td").parent("tr").find("td").eq(3).text();
+            var stuffEntryDate=$(this).parent("td").parent("tr").find("td").eq(5).text();
+            var retireDate=$(this).parent("td").parent("tr").find("td").eq(6).text();   
+            var retireInterface=$(this).parent("td").parent("tr").find("td").eq(4).text();
+            var retireMoney=$(this).parent("td").parent("tr").find("td").eq(7).text(); 	
 
-        $("#edit_box").show();
-    }
-    $("#edit_closeBtn").click(function () {
-        $(".layui-layer-close2").click();
-    });
+            $("#e_stuffID").text(stuffID);
+			$("#e_stuffName").text(stuffName);
+			$("#e_stuffDepart").text(stuffDepart);
+			$("#e_stuffDuty").text(stuffDuty);
+			$("#e_stuffentryDate").val(stuffEntryDate);
+			$("#e_retireDate").val(retireDate);
+			$("#e_retireInterface").val(retireInterface);	
+			$("#e_retireMoney").val(retireMoney);
+
+			
+			alertEditBox();
+		});
+		function alertEditBox() {
+			layer.open({
+				type: 1,
+				closeBtn: true,
+				title: false,
+				area: ['600px', '400px'],
+				shadeClose: false, //点击遮罩不关闭
+				content: $('#edit_box')
+			});
+
+			$("#edit_box").show();
+		}
+		$("#edit_closeBtn").click(function () {
+			$(".layui-layer-close2").click();
+		});
 
 
-    //增加按钮 弹框
-    $("#applicant_addBtn").click(alertAddBox);
-    function alertAddBox() {
-        layer.open({
-            type: 1,
-            closeBtn: true,
-            title: false,
-            area: ['600px', '400px'],
-            shadeClose: false, //点击遮罩不关闭
-            content: $('#add_box')
-        });
+		//增加按钮 弹框
+		$("#applicant_addBtn").click(alertAddBox);
+		function alertAddBox() {
+			layer.open({
+				type: 1,
+				closeBtn: true,
+				title: false,
+				area: ['600px', '400px'],
+				shadeClose: false, //点击遮罩不关闭
+				content: $('#add_box')
+			});
 
-        $("#add_box").show();
-    }
-    $("#add_closeBtn").click(function () {
-        $(".layui-layer-close2").click();
-    });
+			$("#add_box").show();
+		}
+		$("#add_closeBtn").click(function () {
+			$(".layui-layer-close2").click();
+		});
 
+		
+		
+		
+		
+		findAllRetireInfos();  //获取全部退休人员信息
+		findAllDepartmentInfo();//获得 部门查询下拉列表
+		
+		//查询按钮
+		$("#sel_btn").click(function(){
+			var stuffID = $("#s_stuffID").val();
+			var stuffName = $("#s_stuffName").val();
+			if(stuffID==""&&stuffName==""){
+				findAllRetireInfos();
+			}else{
+				findRetireInfoByCondition(stuffID,stuffName);
+			}
+		});
+		
+		
+		//单条删除按钮 弹框
+		$("#reture_tbl").on('click','.del_btn',function(){
+			var stuffID=$(this).parent("td").parent("tr").find("td").eq(0).text();   //员工工号
+			
+			sweetDel(stuffID);  //删除弹框 ，在弹框里执行删除操作
+		});
 
-    //批量删除按钮 弹框
-    $("#applicant_delBtn").click(function () {
-        swal({
-            title: "您确定要删除这条信息吗",
-            text: "删除后将无法恢复，请谨慎操作！",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "是的，我要删除！",
-            cancelButtonText: "让我再考虑一下…",
-            closeOnConfirm: false,
-            closeOnCancel: false
-        }, function (isConfirm) {
-            if (isConfirm) {
-                swal("删除成功！", "您已经永久删除了这条信息。", "success")
-            } else {
-                swal("已取消", "您取消了删除操作！", "error")
-            }
-        })
-    });
-    //单条删除按钮 弹框
-    $(".del_btn").click(function () {
-        swal({
-            title: "您确定要删除这条信息吗",
-            text: "删除后将无法恢复，请谨慎操作！",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "删除",
-            closeOnConfirm: false
-        }, function () {
-            swal("删除成功！", "您已经永久删除了这条信息。", "success");
-        });
-    });
+		
+		//增加弹框  工号失去焦点
+		$("#a_stuffID").blur(function(){
+			var stuffID=$("#a_stuffID").val();
+			findJobInfoById(stuffID);//根据id 查询员工岗位信息表
+		});
+		
+		
+		//增加提交 按钮
+		$("#addSubmit_btn").click(function(){
+			var stuffID=$("#a_stuffID").val();
+			var stuffName = $("#a_stuffName").text();
+			var stuffDepart = $("#a_stuffDepart").text();
+			var stuffDuty = $("#a_stuffDuty").text();
+			var stuffEntryDate = $("#a_stuffentryDate").val();
+			var retireDate = $("#a_retireDate").val();
+			var retireInterface = $("#a_retireInterface").val();
+			var retireMoney = $("#a_retireMoney").val();
+			
+			if($.trim(retireInterface)==''){warn_str="请输入正确格式的交接人";sweetWarn(warn_str,type_str);return false;}
+			if($.trim(stuffEntryDate)==''){warn_str="请输入正确格式的入职日期";sweetWarn(warn_str,type_str);return false;}
+			if($.trim(retireDate)==''){warn_str="请输入正确格式的退休日期";sweetWarn(warn_str,type_str);return false;}
+			if($.trim(stuffID)==''){warn_str="请输入正确格式的员工工号";sweetWarn(warn_str,type_str);return false;}
+			
+			addRetireInfo(stuffID,stuffName,stuffDepart,stuffDuty,stuffEntryDate,retireDate,retireInterface,retireMoney);
+		});
+		
+		
+		
+		//编辑提交按钮
+		$("#editSubmit_btn").click(function(){
+			var stuffID=$("#e_stuffID").text();
+			var stuffName=$("#e_stuffName").text();
+			var stuffDepart=$("#e_stuffDepart").text();
+			var stuffDuty=$("#e_stuffDuty").text();
+			var stuffEntryDate=$("#e_stuffentryDate").val();
+			var retireDate=$("#e_retireDate").val();
+			var retireInterface=$("#e_retireInterface").val();
+			var retireMoney=$("#e_retireMoney").val();
+			
+			if($.trim(retireInterface)==''){warn_str="请输入正确格式的交接人";sweetWarn(warn_str,type_str);return false;}
+			if($.trim(stuffEntryDate)==''){warn_str="请输入正确格式的入职日期";sweetWarn(warn_str,type_str);return false;}
+			if($.trim(retireDate)==''){warn_str="请输入正确格式的退休日期";sweetWarn(warn_str,type_str);return false;}
+			
+			
+			updateRetireInfo(stuffID,stuffName,stuffDepart,stuffDuty,stuffEntryDate,retireDate,retireInterface,retireMoney);
+		});
+		
+		
+		
+		//修改员工退休信息表
+		function updateRetireInfo(stuffID,stuffName,stuffDepart,stuffDuty,stuffEntryDate,retireDate,retireInterface,retireMoney){
+			$.ajax({
+				url: "<%=request.getContextPath()%>/servlet/RetireInfoServlet",
+				type: "post",
+				cache: false,
+				dataType: "text",
+				data: {
+					"reqCode": "updateRetireInfo", //请求码
+					"stuffName":stuffName, //姓名
+					"stuffID":stuffID, //工号
+					"stuffDepart":stuffDepart,  //部门
+					"stuffDuty":stuffDuty,
+					"stuffEntryDate":stuffEntryDate,
+					"retireDate":retireDate,
+					"retireInterface":retireInterface,
+					"retireMoney":retireMoney,
+					
+				},
+				error: function () {
+					alert("修改员工退休信息表请求失败！");
+				},
+				success:function(data){
+					$("#edit_closeBtn").click();
+					var warn_str="修改退休信息表请求成功！";
+	                var type_str="success";
+				    sweetWarn(warn_str,type_str);
+				}
+			})
+		}
+		
+		
+				
+		//增加  退休信息表
+		function addRetireInfo(stuffID,stuffName,stuffDepart,stuffDuty,stuffEntryDate,retireDate,retireInterface,retireMoney){
+			$.ajax({
+				url: "<%=request.getContextPath()%>/servlet/RetireInfoServlet",
+				type: "post",
+				cache: false,
+				dataType: "text",
+				data: {
+					"reqCode": "addRetireInfo", //请求码
+					"stuffName":stuffName, //姓名
+					"stuffID":stuffID, //工号
+					"stuffDepart":stuffDepart,  //部门
+					"stuffDuty":stuffDuty,
+					"stuffEntryDate":stuffEntryDate,
+					"retireDate":retireDate,
+					"retireInterface":retireInterface,
+					"retireMoney":retireMoney
+				},
+				error: function () {
+					alert("增加退休信息表请求失败！");
+				},
+				success:function(data){
+					$("#add_closeBtn").click();
+					var warn_str="增加退休信息表请求成功！";
+	                var type_str="success";
+				    sweetWarn(warn_str,type_str);
+					
+					delStuffInfo(stuffID);//删除员工基本信息表
+					delJobInfo(stuffID);//删除员工岗位信息表
+					
+					findAllRetireInfos();//获取全部退休人员信息
+				}
+			})
+		}
+		
+		
+		
+		//根据id 查询员工岗位信息表
+		function findJobInfoById(stuffID){
+			$.ajax({
+				url: "<%=request.getContextPath()%>/servlet/JobInfoServlet",
+				type: "post",
+				cache: false,
+				dataType: "text",
+				data: {
+					"reqCode": "findJobInfoById", //请求码
+					"stuffID":stuffID
+				},
+				error: function () {
+					alert("根据id 查询员工岗位信息请求失败！");
+				},
+				success:function(data){
+					if(data=="null"||data==null){
+						alert("查询不到此员工");
+						return false;
+					}else{
+						var data=JSON.parse(data);
+						$("#a_stuffName").text(data.stuffName);
+			            $("#a_stuffDepart").text(data.stuffDepart);
+			            $("#a_stuffDuty").text(data.stuffDuty);
+			            $("#a_stuffentryDate").val(data.stuffEntryDate);
+					}	
+				}
+			})
+		}
+		
+		//删除员工基本信息表
+		function delStuffInfo(stuffID){
+			$.ajax({
+			url: "<%=request.getContextPath()%>/servlet/StuffInfoServlet",
+			type: "post",
+			cache: false,
+			dataType: "text",
+			data: {
+				"reqCode": "delStuffInfo", //请求码
+				"stuffID":stuffID, //应聘人ID
+			},
+			error:function () {
+				alert("删除员工基本信息请求失败！");
+			},
+			success:function(data){
+			}
+		  })
+		}
+		
+		//删除员工岗位信息表
+		function delJobInfo(stuffID){
+			$.ajax({
+			url: "<%=request.getContextPath()%>/servlet/JobInfoServlet",
+			type: "post",
+			cache: false,
+			dataType: "text",
+			data: {
+				"reqCode": "delJobInfo", //请求码
+				"stuffID":stuffID, //应聘人ID
+			},
+			error:function () {
+				alert("删除员工岗位信息请求失败！");
+			},
+			success:function(data){
+			}
+		  })
+		}
+		
+		
+		
+	    
+		// 单条 删除退休信息
+		function delRetireInfo(stuffID){
+			$.ajax({
+			url: "<%=request.getContextPath()%>/servlet/RetireInfoServlet",
+			type: "post",
+			cache: false,
+			dataType: "text",
+			data: {
+				"reqCode": "delRetireInfo", //请求码
+				"stuffID":stuffID, //应聘人ID
+			},
+			error:function () {
+				alert("删除人员请求失败！");
+			},
+			success:function(data){
+				alert("删除人员请求成功！");
+				
+				findAllRetireInfos();
+			}
+		});
+			
+		}
+		
+		
+		//条件查询退休员工信息
+		function findRetireInfoByCondition(stuffID,stuffName){
+			$.ajax({
+				url: "<%=request.getContextPath()%>/servlet/RetireInfoServlet",
+				type: "post",
+				cache: false,
+				dataType: "json",
+				data: {
+					"reqCode": "findRetireInfoByCondition", //请求码
+					"stuffName":stuffName, //姓名
+					"stuffID":stuffID //工号
+					
+				},
+				error: function () {
+					alert("条件查询人员名单数据请求失败！");
+				},
+				success:function(data){
+					alert("条件查询人员名单数据请求成功！");
+					var tbl=$("#reture_tbl tbody");
+					var tbl_str='';   //插入字符串
+					var result = data.rows;
+					var total = data.total;
+					tbl.empty();	
+				
+				if(total== 0){
+					var warn_str="找不到符合查询条件的数据！";
+	                var type_str="warning";
+				    sweetWarn(warn_str,type_str);
+				}else{
+					$(result).each(function(key){
+					tbl_str=$('<tr>'+
+                                     '<td>'+result[key].stuffID+'</td>'+
+                                    '<td>'+result[key].stuffName+'</td>'+
+                                    '<td>'+result[key].stuffDepart+'</td>'+
+                                    '<td>'+result[key].stuffDuty+'</td>'+
+                                    '<td>'+result[key].retireInterface+'</td>'+
+                                    '<td>'+result[key].retireDate+'</td>'+
+                                    '<td>'+result[key].retireMoney+'</td>'+
+                                    '<td>'+
+                                    '    <button class="btn btn-info edit_btn" type="button">'+
+                                    '        <i class="fa fa-pencil fa-fw"></i>编辑'+
+                                    '    </button>'+
+                                    '    <button class="btn btn-danger del_btn" type="button">'+
+                                    '        <i class="fa fa-trash fa-fw"></i></i>删除'+
+                                    '    </button>'+
+                                    '</td>'+
+                        '</tr>');									
+						tbl.append(tbl_str);						
+				});
+				}
+					
+				}
+			});
+		}
+		
+		
+		
+		//获取全部退休人员信息
+		function findAllRetireInfos(){
+			$.ajax({
+				 url: "<%=request.getContextPath()%>/servlet/RetireInfoServlet",
+				 type: "post",
+				 cache: false,
+				 dataType: "json",
+				 data: {
+				 	"reqCode": "findAllRetireInfos", //请求码
+				 },
+				 error: function () {
+				 	alert("获取全部退休人员信息请求失败！");
+				 },
+				 success:function(data){
+					 
+					var tbl=$("#reture_tbl tbody");
+				    var tbl_str='';   //插入字符串
+				    var result = data.rows;
+				    tbl.empty();
+					
+					$(result).each(function (key) {		
+						tbl_str=$('<tr>'+
+                                    '<td>'+result[key].stuffID+'</td>'+
+                                    '<td>'+result[key].stuffName+'</td>'+
+                                    '<td>'+result[key].stuffDepart+'</td>'+
+                                    '<td>'+result[key].stuffDuty+'</td>'+
+                                    '<td>'+result[key].retireInterface+'</td>'+
+                                    '<td>'+result[key].stuffEntryDate+'</td>'+
+                                    '<td>'+result[key].retireDate+'</td>'+
+                                    '<td>'+result[key].retireMoney+'</td>'+
+                                    '<td>'+
+                                    '    <button class="btn btn-info edit_btn" type="button">'+
+                                    '        <i class="fa fa-pencil fa-fw"></i>编辑'+
+                                    '    </button>'+
+                                    '    <button class="btn btn-danger del_btn" type="button">'+
+                                    '        <i class="fa fa-trash fa-fw"></i></i>删除'+
+                                    '    </button>'+
+                                    '</td>'+
+                                '</tr>');
+						tbl.append(tbl_str);
+					});	 
+				 }	
+			});
+		}
+		
+		
+		
+		//获得 部门查询下拉列表
+		function findAllDepartmentInfo() {
+			$.ajax({
+				url: "<%=request.getContextPath()%>/servlet/DepartmentInfoServlet",
+				type: "post",
+				cache: false,
+				dataType: "json",
+				data: {
+					"reqCode": "findAllDepartmentInfos", //请求码
+				},
+				error: function () {
+					alert("全部部门信息数据请求失败！");
+				},
+				success: function (data) {
+					var depStr='';   //查询下拉框  插入字符串
+					var str1=$('<option value="">全部</option>');  //查询下拉框  全部选项
+					var result = data.rows;
+					var depSel=$("#department_name"); //查询下拉列表
+					depSel.empty();
+					depSel.append(str1);
+					 
+					$(result).each(function (key) {
+						depStr=$('<option value="'+result[key].departID+'">'+result[key].departName+'</option>');
+						depSel.append(depStr);
+					});
+				}
+			});
+		}
+		
+		//sweetalert 弹框（一个确定按钮）
+		function sweetWarn(str,type){
+			swal({
+				title:"提示",
+				text:str,
+				type:type
+			})
+		}
+		
+		//sweetalert 弹框（删除）
+		function sweetDel(stuffID){
+			swal({
+				title: "您确定要删除这条信息吗",
+				text: "删除后将无法恢复，请谨慎操作！",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "删除",
+				closeOnConfirm: false
+			}, function (isConfirm) {
+				if(isConfirm){
+					delRetireInfo(stuffID);
+					swal("删除成功！","您已经永久删除了这条信息。","success")
+				}else{
+					swal("已取消","您取消了删除操作！","error");
+				}
+				
+			});
+		}
+		
+		
+		
+	});
+
 
 </script>
 </body>

@@ -123,6 +123,21 @@ public class OverWorkInfo {
 		this.overworkApprover = overworkApprover;
 	}
 
+	public OverWorkInfo(String stuffID, String stuffName, String stuffDepart,
+			String overworkStart, String overworkEnd, double overworkHours,
+			String overworkReason, double overworkMoney, String overworkApprover) {
+		super();
+		this.stuffID = stuffID;
+		this.stuffName = stuffName;
+		this.stuffDepart = stuffDepart;
+		this.overworkStart = overworkStart;
+		this.overworkEnd = overworkEnd;
+		this.overworkHours = overworkHours;
+		this.overworkReason = overworkReason;
+		this.overworkMoney = overworkMoney;
+		this.overworkApprover = overworkApprover;
+	}
+
 	public OverWorkInfo() {
 		super();
 		// TODO Auto-generated constructor stub

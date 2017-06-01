@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import com.testbs.entity.AdjustRestInfo;
+import com.testbs.entity.TrainInfo;
 
 import com.testbs.service.AdjustRestInfoService;
+import com.testbs.service.TrainInfoService;
 
 
 public class AdjustRestServlet extends HttpServlet {
@@ -77,10 +79,11 @@ public class AdjustRestServlet extends HttpServlet {
 			int pageSize1 = Integer.valueOf(pageSize);
 			// 获取查询参数
 			String stuffID = req.getParameter("stuffID");
+			String stuffName = req.getParameter("stuffName");
 
 			AdjustRestInfoService adjustrestInfoService = new AdjustRestInfoService();
 			List<AdjustRestInfo> adjustrestInfos = adjustrestInfoService
-					.getAdjustRestInfoForPage(stuffID, pageNo1, pageSize1);
+					.getAdjustRestInfoForPage(stuffID,stuffName, pageNo1, pageSize1);
 			int total = adjustrestInfoService.getTotalCount(stuffID);
 
 			JSONObject json = new JSONObject();
@@ -104,7 +107,28 @@ public class AdjustRestServlet extends HttpServlet {
 			PrintWriter out = resp.getWriter();
 			out.write(json.toString());
 			out.close();
-		} else if (reqCode.equals("findAdjustRestInfoById")) {
+		} 
+		
+else if (reqCode.equals("findAdjustRestInfoByCondition")) {
+			
+			String stuffName = req.getParameter("stuffName"); //姓名
+			String stuffID = req.getParameter("stuffID"); // 工号
+			String stuffDepart = req.getParameter("stuffDepart"); // 部门
+			
+			AdjustRestInfoService adjustrestInfoService = new AdjustRestInfoService();
+			List<AdjustRestInfo> adjustrestInfos = adjustrestInfoService.findAdjustRestInfoByCondition(stuffID,stuffName,stuffDepart);
+	
+			JSONObject json = new JSONObject();
+			json.put("rows", adjustrestInfos);
+			json.put("total",adjustrestInfos.size());
+
+			resp.setContentType("text/html;charset=utf-8");
+			PrintWriter out = resp.getWriter();
+			out.write(json.toString());
+			out.close();
+		} 
+		
+		else if (reqCode.equals("findAdjustRestInfoById")) {
 			// 获取部门编号
 			String stuffID = req.getParameter("stuffID");
 			// 调用Model，查询该部门
@@ -119,7 +143,7 @@ public class AdjustRestServlet extends HttpServlet {
 		} else if (reqCode.equals("updateAdjustRestInfo")) {
 			// 提取数据
 //			int id = (Integer.parseInt(req.getParameter("id")));
-			
+			String stuffID = req.getParameter("stuffID");
 			String stuffName = req.getParameter("stuffName");
 			String stuffDepart = req.getParameter("stuffDepart");
 			String adjustType = req.getParameter("adjustType");
@@ -129,7 +153,7 @@ public class AdjustRestServlet extends HttpServlet {
 
 		
 			//entity里要有相应的参数组合
-			AdjustRestInfo adjustrestInfo = new AdjustRestInfo(stuffName,
+			AdjustRestInfo adjustrestInfo = new AdjustRestInfo(stuffID,stuffName,
 					stuffDepart, adjustType,adjustBefore,adjustAfter,adjustApprover);
 			// 调用Model
 			AdjustRestInfoService adjustrestInfoService = new AdjustRestInfoService();

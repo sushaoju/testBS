@@ -151,6 +151,7 @@ public class DimissionInfoServlet extends HttpServlet {
 			// 提取数据
 			// int id = (Integer.parseInt(req.getParameter("id")));
 
+			String stuffID = req.getParameter("stuffID");
 			String stuffName = req.getParameter("stuffName");
 			String stuffDepart = req.getParameter("stuffDepart");
 			String stuffDuty = req.getParameter("stuffDuty");
@@ -158,7 +159,7 @@ public class DimissionInfoServlet extends HttpServlet {
 			String dimissReason = req.getParameter("dimissReason");
 			String dimissDate = req.getParameter("dimissDate");
 
-			DimissionInfo dimissionInfo = new DimissionInfo(stuffName,
+			DimissionInfo dimissionInfo = new DimissionInfo(stuffID,stuffName,
 					stuffDepart, stuffDuty, dimissInterface, dimissReason,
 					dimissDate);
 			// 调用Model

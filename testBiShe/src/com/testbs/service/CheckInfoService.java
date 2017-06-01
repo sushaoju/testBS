@@ -9,6 +9,7 @@ import java.util.List;
 import com.testbs.dao.BaseDao;
 
 import com.testbs.entity.CheckInfo;
+import com.testbs.entity.TrainInfo;
 
 public class CheckInfoService extends BaseDao {
 	// 分页
@@ -93,6 +94,93 @@ public class CheckInfoService extends BaseDao {
 		return checkInfos;
 	}
 
+	
+	//根据条件返数据
+		public List<CheckInfo> findCheckInfoByCondition(String stuffID,String stuffName,String stuffDepart) {
+			List<CheckInfo>  checkInfos = new ArrayList<CheckInfo>();
+			List<Object> paramsTemp = new ArrayList<Object>();
+			List<Object> params = new ArrayList<Object>();
+							 
+			 String	query ="";
+			 ResultSet rs;
+			 
+			 if((stuffID!=""&&stuffID!=null)&&(stuffName!=""&&stuffName!=null)&&(stuffDepart!=""&&stuffDepart!=null)){
+				 params.add(stuffID);		
+				 params.add(stuffName);
+				 params.add(stuffDepart);
+				 paramsTemp=params;
+				 
+				 query = " select *  from  checkinfo  where stuffID = ? and stuffName = ? and stuffDepart =?";			
+				
+			 }
+			 else  if((stuffID==""||stuffID==null)&&(stuffDepart==""||stuffDepart==null)&&(stuffName!=""&&stuffName!=null)){
+				
+				 params.add(stuffName);
+				 paramsTemp=params;		
+				 query="select *  from  checkinfo  where stuffName = ?";
+			 }
+			 else  if((stuffID==""||stuffID==null)&&(stuffName==""||stuffName==null)&&(stuffDepart!=""&&stuffDepart!=null)){
+				
+				 params.add(stuffDepart);
+				 paramsTemp=params;
+				 query="select *  from  checkinfo  where stuffDepart = ?";
+			 }
+			 else  if((stuffDepart==""||stuffDepart==null)&&(stuffName==""||stuffName==null)&&(stuffID!=""&&stuffID!=null)){
+				 
+				 params.add(stuffID);
+				 paramsTemp=params;
+				 query="select *  from  checkinfo  where stuffID = ?";
+			 }
+			 else  if((stuffID!=""||stuffID!=null)&&(stuffName!=""||stuffName!=null)&&(stuffDepart==""&&stuffDepart==null)){
+				 params.add(stuffID);
+				 params.add(stuffName);
+				 paramsTemp=params;
+				 query="select *  from  checkinfo  where stuffID = ? and stuffName = ?";
+			 }
+			 else  if((stuffID!=""||stuffID!=null)&&(stuffName==""||stuffName==null)&&(stuffDepart!=""&&stuffDepart!=null)){
+				 
+				 params.add(stuffID);
+				 params.add(stuffDepart);
+				 paramsTemp=params;
+				 query="select *  from  checkinfo  where stuffID = ? and stuffDepart =?";
+			 }
+			 else  if((stuffID==""||stuffID==null)&&(stuffName!=""||stuffName!=null)&&(stuffDepart!=""&&stuffDepart!=null)){
+				 
+				 params.add(stuffName);
+				 params.add(stuffDepart);
+				 paramsTemp=params;
+				 query="select *  from  checkinfo  where stuffName = ? and stuffDepart =?";
+			 }
+					 
+			 rs = this.executeQuery(query, paramsTemp);
+			 
+			try {
+				while(rs.next()){     
+				        String stuffID1 = rs.getString("stuffID");	
+						String stuffName1=rs.getString("stuffName");
+						String stuffDepart1=rs.getString("stuffDepart");
+						String stuffShift=rs.getString("stuffShift");
+						Double workHour=rs.getDouble("workHour");
+						String workDate=rs.getString("workDate");
+						Double lateHour=rs.getDouble("lateHour");
+						Double absentHour=rs.getDouble("absentHour");
+									
+						CheckInfo checkInfo = new CheckInfo(stuffID1,stuffName1,stuffDepart1,stuffShift,workHour,workDate,lateHour,absentHour);
+						checkInfos.add(checkInfo);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				this.close();
+			}
+			return checkInfos;
+		}
+
+		
+	
+	
+	
 	// 根据id返数据
 	public CheckInfo findCheckInfoById(String stuffID) {
 
@@ -140,6 +228,7 @@ public class CheckInfoService extends BaseDao {
 		params.add(checkInfo.getWorkDate());
 		params.add(checkInfo.getLateHour());
 		params.add(checkInfo.getAbsentHour());
+		params.add(checkInfo.getStuffID());
 
 		return this.executeUpdate(update, params);
 	}

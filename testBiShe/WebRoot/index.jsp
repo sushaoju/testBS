@@ -2,6 +2,9 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+
+Object a=request.getAttribute("account");
+
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -42,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <span><img alt="image" class="img-circle" src="img/profile_small.jpg"/></span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">Sugar</strong></span>
+                               <span class="block m-t-xs"><strong class="font-bold"><%=a%></strong></span>
                                 <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
                                 </span>
                         </a>
@@ -57,15 +60,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="logo-element">S+D
                     </div>
                 </li>
-
+<!-- 
                 <li>
                     <a href="404.jsp">
                         <i class="fa fa-home"></i>
                         <span class="nav-label">主页</span>
                     </a>
                 </li>
-
-                <li>
+-->
+                <li class="active">
                     <a href="javascript:void(0)">
                         <i class="fa fa-desktop"></i>
                         <span class="nav-label">人事管理</span>
@@ -77,11 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </li>
                         <li>
                             <a class="J_menuItem" href="recruitInfo.jsp">招聘</a>
-                        </li>
-                        
-                        <li>
-                            <a class="J_menuItem" href="404.jsp">补贴</a>
-                        </li>
+                        </li>                      
                         <li>
                             <a class="J_menuItem" href="dimission.jsp">离职</a>
                         </li>
@@ -100,10 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="adjustJob.jsp">调岗</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="adjustMoney.jsp">调薪</a>
+                            <a class="J_menuItem" href="adjustJob.jsp">员工岗位信息</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="department.jsp">部门组织</a>
@@ -133,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <a class="J_menuItem" href="checkWork.jsp">考勤</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="department.jsp">请假、调休、加班</a>
+                            <a class="J_menuItem" href="adjustWork.jsp">请假、调休、加班</a>
                         </li>
 
                     </ul>
@@ -149,18 +145,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <li>
                             <a class="J_menuItem" href="stuff_salary.jsp">员工薪资</a>
                         </li>
-                        <li>
+                       <!--  <li>
                             <a class="J_menuItem" href="salary_sum.jsp">薪资汇总</a>
-                        </li>
+                        </li> -->
 
                     </ul>
                 </li>
-
+			
                 <li>
-                    <a href="404.jsp">
+                    <a  class="J_menuItem"  href="system.jsp">
                         <i class="fa fa-users"></i>
                         <span class="nav-label">系统管理</span>
-                        <span class="fa arrow"></span>
                     </a>
                 </li>
 
@@ -258,7 +253,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 
         <div class="row J_mainContent" id="content-main">
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="index_v1.jsp?v=4.0"
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="stuffBasic.jsp?"
                     frameborder="0" data-id="index_v1.jsp" seamless></iframe>
         </div>
 

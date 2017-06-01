@@ -47,22 +47,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <label for="s_stuffName">姓名：</label>
                     <input type="text" placeholder="请输入姓名" id="s_stuffName" class="form-control">
                     <label for="s_stuffDepart">部门：</label>
-                    <select name="s_stuffDepart" id="s_stuffDepart" class="form-control">
-                        <option value="0">技术部</option>
-                        <option value="1">财务部</option>
-                    </select>
-
-
+                    <select name="s_stuffDepart" id="s_stuffDepart" class="form-control"></select>
                 </div>
-                <div class="form-group" style="margin-top: 10px">
-                    <label for="">日期：</label>
-                    <input type="date" class="form-control" placeholder="开始日期"> ——
-                    <input type="date" class="form-control" placeholder="结束日期">
-                    <button class="btn btn-info" type="button"><i class="fa fa-search fa-fw"></i>查询</button>
-                    <button id="applicant_addBtn" class="btn btn-primary" type="button"><i class="fa fa-plus fa-fw"></i>增加
-                    </button>
-                    <button id="applicant_delBtn" class="btn btn-danger" type="button"><i class="fa fa-trash-o fa-fw"></i>删除
-                    </button>
+                <div class="form-group" style="margin-top: 10px"> 
+                    <button id="sel_btn" class="btn btn-info" type="button" style="position:relative;top:-5px"><i class="fa fa-search fa-fw"></i>查询</button>   
                 </div>
 
             </form>
@@ -87,31 +75,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="ibox-content">
             <div class="row row-lg">
                 <div class="col-sm-12">
-                    <div class="example-wrap">
-                        <div class="example">
-                            <table id="exampleTableColumns" data-mobile-responsive="true">
+                            <table id="check_tbl" data-mobile-responsive="true" class="table table-striped table-hover">
                                 <thead>
                                 <tr>
-                                    <th data-field="state" data-checkbox="true"></th>
-                                    <th data-field="name" data-switchable="false">编号</th>
-                                    <th data-field="name" data-switchable="false">工号</th>
-                                    <th data-field="price" data-switchable="false">姓名</th>
-                                    <th data-field="column3" data-visible="true">部门</th>
+                                    <th>工号</th>
+                                    <th>姓名</th>
+                                    <th>部门</th>
 
-                                    <th data-field="column4" data-visible="true">班次</th>
-                                    <th data-field="column5" data-visible="true">工时</th>
-                                    <th data-field="column6" data-visible="false">迟到</th>
-                                    <th data-field="column7" data-visible="false">旷工</th>
-                                    <th data-field="column8" data-visible="true">日期</th>
+                                    <th>班次</th>
+                                    <th>工时</th>
+                                    <th>迟到/时</th>
+                                    <th>旷工/时</th>
+                                    <th>日期</th>
 
-                                    <th data-field="column9" data-switchable="false">操作</th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                 <tr>
-                                    <td></td>
-                                    <td>1</td>
                                     <td>2</td>
                                     <td>sugar</td>
                                     <td>技术部</td>
@@ -132,8 +114,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -148,8 +128,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <form>
         <div class="form-group">
             <div class="col-sm-6">
-                <label for="e_stuffID">编号:</label>
-                <span id="e_stuffID">s001</span>
+                <label for="e_stuffID">工号:</label>
+                <span id="e_stuffID"></span>
             </div>
             <div class="clearfix hidden-xs"></div>
         </div>
@@ -157,45 +137,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="from-group">
             <div class="col-sm-6">
                 <label for="e_stuffName">姓名:</label>
-                <input class="form-control" type="text" placeholder="请输入姓名" id="e_stuffName">
+				<span id="e_stuffName"></span>
             </div>
 
             <div class="col-sm-6">
                 <label for="e_stuffDepart">所在部门:</label>
-                <select name="e_stuffDepart" id="e_stuffDepart" class="form-control">
-                    <option value="0">技术部</option>
-                    <option value="1">财务部</option>
+				<span id="e_stuffDepart"></span>
+            </div>
+        </div>
+
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="e_stuffShift">班次:</label>
+                 <select name="e_stuffShift" id="e_stuffShift" class="form-control">
+                        <option value="白班">白班</option>
+                        <option value="夜班">夜班</option>
                 </select>
             </div>
-        </div>
-
-        <div class="from-group">
             <div class="col-sm-6">
-                <label for="e_stuffDuty">岗位:</label>
-                <input class="form-control" type="text" placeholder="请输入岗位" id="e_stuffDuty">
-            </div>
-            <div class="col-sm-6">
-                <label for="e_dimissDate">离职时间:</label>
-                <input class="form-control" type="text" placeholder="请输入到岗日期" id="e_dimissDate">
+                <label for="e_workHour">工时/时:</label>
+                <input class="form-control" type="text" placeholder="请输入工时" id="e_workHour">
             </div>
         </div>
 
         <div class="from-group">
             <div class="col-sm-6">
-                <label for="e_dimissInterface">交 接 人 :</label>
-                <input class="form-control" type="text" placeholder="请输入交接人" id="e_dimissInterface">
+                <label for="e_workDate">日期:</label>
+                <input class="form-control" type="date"id="e_workDate">
+            </div>
+			<div class="col-sm-6">
+                <label for="e_lateHour">迟到/时:</label>
+                <input class="form-control" type="text"id="e_lateHour">
             </div>
         </div>
         <div class="from-group">
-            <div class="col-sm-12">
-                <label for="e_dimissReason" style="vertical-align: top">离职原因:</label>
-                <textarea name="e_dimissReason" id="e_dimissReason" cols="30" rows="10" style="resize:none;"></textarea>
+            <div class="col-sm-6">
+                <label for="e_absentHour">旷工/时:</label>
+                <input class="form-control" type="text"id="e_absentHour">
             </div>
         </div>
-
+        <div class="clearfix hidden-xs"></div>
         <div class="from-group">
             <div class="col-sm-6 text-center">
-                <button class="btn btn-primary btn-lg" type="button">修改</button>
+                <button class="btn btn-primary btn-lg" type="button" id="editSubmit_btn">修改</button>
 
             </div>
 
@@ -206,65 +190,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </form>
 </div>
 <!--编辑弹框 end-->
-
-
-<!--增加弹框 start-->
-<div id="add_box">
-    <h2>增加考勤信息</h2>
-    <form>
-
-        <div class="from-group">
-            <div class="col-sm-6">
-                <label for="a_stuffName">姓名:</label>
-                <input class="form-control" type="text" placeholder="请输入姓名" id="a_stuffName">
-            </div>
-
-            <div class="col-sm-6">
-                <label for="a_stuffDepart">所在部门:</label>
-                <select name="a_stuffDepart" id="a_stuffDepart" class="form-control">
-                    <option value="0">技术部</option>
-                    <option value="1">财务部</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="from-group">
-            <div class="col-sm-6">
-                <label for="a_stuffDuty">岗位:</label>
-                <input class="form-control" type="text" placeholder="请输入岗位" id="a_stuffDuty">
-            </div>
-            <div class="col-sm-6">
-                <label for="a_dimissDate">离职时间:</label>
-                <input class="form-control" type="date" placeholder="离职时间" id="a_dimissDate">
-            </div>
-        </div>
-
-        <div class="from-group">
-            <div class="col-sm-6">
-                <label for="a_dimissInterface">交 接 人 :</label>
-                <input class="form-control" type="text" placeholder="请输入交接人" id="a_dimissInterface">
-            </div>
-        </div>
-
-        <div class="from-group">
-            <div class="col-sm-12">
-                <label for="a_dimissReason" style="vertical-align: top">离职原因:</label>
-                <textarea name="a_dimissReason" id="a_dimissReason" cols="30" rows="10" style="resize:none;"></textarea>
-            </div>
-        </div>
-
-        <div class="from-group">
-            <div class="col-sm-6 text-center">
-                <button class="btn btn-primary btn-lg" type="button">增加</button>
-
-            </div>
-            <div class="col-sm-6 text-center">
-                <button id="add_closeBtn" class="btn btn-default btn-lg" type="button">取消</button>
-            </div>
-        </div>
-    </form>
-</div>
-<!--增加弹框 end-->
 
 
 <script src="js/jquery.min.js?v=2.1.4"></script>
@@ -279,84 +204,317 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script>
 
-    //编辑按钮 弹框
-    $(".edit_btn").click(alertEditBox);
-    function alertEditBox() {
-        layer.open({
-            type: 1,
-            closeBtn: true,
-            title: false,
-            area: ['600px', '400px'],
-            shadeClose: false, //点击遮罩不关闭
-            content: $('#edit_box')
-        });
-
-        $("#edit_box").show();
-    }
-    $("#edit_closeBtn").click(function () {
-        $(".layui-layer-close2").click();
-    });
-
-
-    //增加按钮 弹框
-    $("#applicant_addBtn").click(alertAddBox);
-    function alertAddBox() {
-        layer.open({
-            type: 1,
-            closeBtn: true,
-            title: false,
-            area: ['600px', '400px'],
-            shadeClose: false, //点击遮罩不关闭
-            content: $('#add_box')
-        });
-
-        $("#add_box").show();
-    }
-    $("#add_closeBtn").click(function () {
-        $(".layui-layer-close2").click();
-    });
-
-
-    //批量删除按钮 弹框
-    $("#applicant_delBtn").click(function () {
-        swal({
-            title: "您确定要删除这条信息吗",
-            text: "删除后将无法恢复，请谨慎操作！",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "是的，我要删除！",
-            cancelButtonText: "让我再考虑一下…",
-            closeOnConfirm: false,
-            closeOnCancel: false
-        }, function (isConfirm) {
-            if (isConfirm) {
-                swal("删除成功！", "您已经永久删除了这条信息。", "success")
-            } else {
-                swal("已取消", "您取消了删除操作！", "error")
-            }
-        })
-    });
-    //单条删除按钮 弹框
-    $(".del_btn").click(function () {
-        swal({
-            title: "您确定要删除这条信息吗",
-            text: "删除后将无法恢复，请谨慎操作！",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "删除",
-            closeOnConfirm: false
-        }, function () {
-            swal("删除成功！", "您已经永久删除了这条信息。", "success");
-        });
-    });
-
-
-    // 查看应聘人员名单
-    $("#detail_btn").click(function () {
-        location.href = "applicantInfo.html";
-    });
+$(function(){
+	
+	findAllDepartmentInfo(); //获得 部门查询下拉列表
+	findAllCheckInfos(); //获取所有考勤信息
+	
+	//编辑按钮 弹框
+		$("#check_tbl").on('click','.edit_btn',function(){
+			var  stuffID = $(this).parent("td").parent("tr").find("td").eq(0).text(); 
+			var  stuffName =$(this).parent("td").parent("tr").find("td").eq(1).text();   
+			var  stuffDepart =$(this).parent("td").parent("tr").find("td").eq(2).text();  
+			var  stuffShift =$(this).parent("td").parent("tr").find("td").eq(3).text();   
+			var  workHour =$(this).parent("td").parent("tr").find("td").eq(4).text();   
+			var  lateHour =$(this).parent("td").parent("tr").find("td").eq(5).text();   
+			var  absentHour=$(this).parent("td").parent("tr").find("td").eq(6).text();  			
+			var  workDate = $(this).parent("td").parent("tr").find("td").eq(7).text();  
+			
+			
+			$("#e_stuffID").text(stuffID);
+			$("#e_stuffName").text(stuffName);
+			$("#e_stuffDepart").text(stuffDepart);
+			
+			$("#e_stuffShift").val(stuffShift);
+			$("#e_workHour").val(workHour);
+			$("#e_lateHour").val(lateHour);
+			$("#e_absentHour").val(absentHour);
+			$("#e_workDate").val(workDate);
+			
+			alertEditBox();
+			
+		});
+		
+		function alertEditBox() {
+			layer.open({
+				type: 1,
+				closeBtn: true,
+				title: false,
+				area: ['600px', '400px'],
+				shadeClose: false, //点击遮罩不关闭
+				content: $('#edit_box')
+			});
+	
+			$("#edit_box").show();
+		}
+		$("#edit_closeBtn").click(function () {
+			$(".layui-layer-close2").click();
+		});
+	
+	
+	
+	
+	
+	//单条删除 按钮
+		$("#check_tbl").on('click','.del_btn',function(){
+			var stuffID=$(this).parent("td").parent("tr").find("td").eq(0).text();   //员工工号
+			
+			sweetDel(stuffID);  //删除弹框 ，在弹框里执行删除操作
+		}); 
+		
+	//查询按钮	
+	$("#sel_btn").click(function(){
+		var stuffID = $("#s_stuffID").val();
+			var stuffName = $("#s_stuffName").val();
+			var stuffDepart = $("#s_stuffDepart").val();
+			if(stuffID==""&&stuffName==""&&stuffDepart==""){
+				findAllCheckInfos(); //获取所有考勤信息
+			}else{
+				findCheckInfoByCondition(stuffID,stuffName,stuffDepart);
+			}
+	});	
+	
+	
+	
+	//编辑提交按钮
+	    $("#editSubmit_btn").click(function(){
+			  var  stuffID= $("#e_stuffID").text();
+			  var  stuffName= $("#e_stuffName").text();
+			  var  stuffDepart= $("#e_stuffDepart").text();
+			  var  stuffShift = $("#e_stuffShift").val();
+			  var  workHour =$("#e_workHour").val();
+			  var  lateHour = $("#e_lateHour").val();
+			  var  absentHour=$("#e_absentHour").val();
+			  var  workDate =$("#e_workDate").val();
+			  
+			  updateCheckInfo(stuffID,stuffName,stuffDepart,stuffShift,workHour,lateHour,absentHour,workDate);
+		});
+	
+	//更新考勤信息
+		function updateCheckInfo(stuffID,stuffName,stuffDepart,stuffShift,workHour,lateHour,absentHour,workDate){
+			$.ajax({
+				url: "<%=request.getContextPath()%>/servlet/CheckInfoServlet",
+				type: "post",
+				cache: false,
+				dataType: "text",
+				data: {
+					"reqCode": "updateCheckInfo", //请求码
+					"stuffName":stuffName, 
+					"stuffID":stuffID, 
+					"stuffDepart":stuffDepart,  
+					"stuffShift":stuffShift,
+					"workHour":workHour,
+					"lateHour":lateHour,
+					"absentHour":absentHour,
+					"workDate":workDate
+				},
+				error: function () {
+					alert("更新培训信息请求失败！");
+				},
+				success:function(data){
+					$("#edit_closeBtn").click();
+					var warn_str="修改考勤信息成功！";
+	                var type_str="success";
+				    sweetWarn(warn_str,type_str);
+					
+					findAllCheckInfos(); //获取所有考勤信息
+				}
+			})
+		}
+	
+	
+	
+	
+	//条件查询员工考勤信息
+		function findCheckInfoByCondition(stuffID,stuffName,stuffDepart){
+			$.ajax({
+				url: "<%=request.getContextPath()%>/servlet/CheckInfoServlet",
+				type: "post",
+				cache: false,
+				dataType: "json",
+				data: {
+					"reqCode": "findCheckInfoByCondition", //请求码
+					"stuffName":stuffName, //姓名
+					"stuffID":stuffID, //工号
+					"stuffDepart":stuffDepart  //部门
+				},
+				error: function () {
+					alert("条件查询人员名单数据请求失败！");
+				},
+				success:function(data){
+					var tbl=$("#check_tbl tbody");
+					var tbl_str='';   //插入字符串
+					var result = data.rows;
+					var total = data.total;
+					tbl.empty();	
+				
+				if(total== 0){
+					var warn_str="找不到符合查询条件的数据！";
+	                var type_str="warning";
+				    sweetWarn(warn_str,type_str);
+				}else{
+					$(result).each(function(key){
+					tbl_str=$('<tr>'+
+                                   '<td>'+result[key].stuffID+'</td>'+
+                                    '<td>'+result[key].stuffName+'</td>'+
+                                    '<td>'+result[key].stuffDepart+'</td>'+
+                                    '<td>'+result[key].stuffShift+'</td>'+
+                                    '<td>'+result[key].workHour+'</td>'+
+                                    '<td>'+result[key].lateHour+'</td>'+
+                                    '<td>'+result[key].absentHour+'</td>'+
+									'<td>'+result[key].workDate+'</td>'+
+                                    '<td>'+
+                                    '    <button class="btn btn-info edit_btn" type="button">'+
+                                    '        <i class="fa fa-pencil fa-fw"></i>编辑'+
+                                    '    </button>'+
+                                    '    <button class="btn btn-danger del_btn" type="button">'+
+                                    '        <i class="fa fa-trash fa-fw"></i></i>删除'+
+                                    '    </button>'+
+                                    '</td>'+
+                        '</tr>');									
+						tbl.append(tbl_str);						
+				});
+				}
+					
+				}
+			});
+		}
+	
+		
+		
+	
+	//单条删除
+	function  delCheckInfo(stuffID){
+		$.ajax({
+			url: "<%=request.getContextPath()%>/servlet/CheckInfoServlet",
+			type: "post",
+			cache: false,
+			dataType: "text",
+			data: {
+				"reqCode": "delCheckInfo", //请求码
+				"stuffID":stuffID, //应聘人ID
+			},
+			error:function () {
+				alert("删除人员请求失败！");
+			},
+			success:function(data){
+				alert("删除人员请求成功！");
+				
+				findAllCheckInfos(); //获取所有考勤信息
+			}
+		});
+	}
+	
+	//获取所有考勤信息
+   function findAllCheckInfos(){
+	   $.ajax({
+				 url: "<%=request.getContextPath()%>/servlet/CheckInfoServlet",
+				 type: "post",
+				 cache: false,
+				 dataType: "json",
+				 data: {
+				 	"reqCode": "findAllCheckInfos", //请求码
+				 },
+				 error: function () {
+				 	alert("获取所有考勤信息请求失败！");
+				 },
+				 success:function(data){
+					var tbl=$("#check_tbl tbody");
+				    var tbl_str='';   //插入字符串
+				    var result = data.rows;
+				    tbl.empty();
+					
+					$(result).each(function (key) {		
+						tbl_str=$('<tr>'+
+                                    '<td>'+result[key].stuffID+'</td>'+
+                                    '<td>'+result[key].stuffName+'</td>'+
+                                    '<td>'+result[key].stuffDepart+'</td>'+
+                                    '<td>'+result[key].stuffShift+'</td>'+
+                                    '<td>'+result[key].workHour+'</td>'+
+                                    '<td>'+result[key].lateHour+'</td>'+
+                                    '<td>'+result[key].absentHour+'</td>'+
+									'<td>'+result[key].workDate+'</td>'+
+                                    '<td>'+
+                                    '    <button class="btn btn-info edit_btn" type="button">'+
+                                    '        <i class="fa fa-pencil fa-fw"></i>编辑'+
+                                    '    </button>'+
+                                    '    <button class="btn btn-danger del_btn" type="button">'+
+                                    '        <i class="fa fa-trash fa-fw"></i></i>删除'+
+                                    '    </button>'+
+                                    '</td>'+
+                                '</tr>');
+						tbl.append(tbl_str);
+					});
+						 
+				 }	
+			});
+   }
+	
+	
+	
+	//获得 部门查询下拉列表
+	function findAllDepartmentInfo() {
+			$.ajax({
+				url: "<%=request.getContextPath()%>/servlet/DepartmentInfoServlet",
+				type: "post",
+				cache: false,
+				dataType: "json",
+				data: {
+					"reqCode": "findAllDepartmentInfos", //请求码
+				},
+				error: function () {
+					alert("全部部门信息数据请求失败！");
+				},
+				success: function (data) {
+					var depStr='';   //查询下拉框  插入字符串
+					var str1=$('<option value="">全部</option>');  //查询下拉框  全部选项
+					var result = data.rows;
+					var depSel=$("#s_stuffDepart"); //查询下拉列表
+					depSel.empty();
+					depSel.append(str1);
+					 
+					$(result).each(function (key) {
+						depStr=$('<option value="'+result[key].departID+'">'+result[key].departName+'</option>');
+						depSel.append(depStr);
+					});
+				}
+			});
+		}
+		
+		
+		
+			
+		//sweetalert 弹框（一个确定按钮）
+		function sweetWarn(str,type){
+			swal({
+				title:"提示",
+				text:str,
+				type:type
+			})
+		}
+		
+		//sweetalert 弹框（删除）
+		function sweetDel(stuffID){
+			swal({
+				title: "您确定要删除这条信息吗",
+				text: "删除后将无法恢复，请谨慎操作！",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "删除",
+				closeOnConfirm: false
+			}, function (isConfirm) {
+				if(isConfirm){
+					delCheckInfo(stuffID);
+					swal("删除成功！","您已经永久删除了这条信息。","success")
+				}else{
+					swal("已取消","您取消了删除操作！","error");
+				}
+				
+			});
+		}
+		
+});
 
 
 </script>

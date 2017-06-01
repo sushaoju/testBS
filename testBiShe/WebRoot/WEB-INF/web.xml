@@ -35,6 +35,61 @@
     <servlet-name>DimissionInfoServlet</servlet-name>
     <servlet-class>com.testbs.servlet.DimissionInfoServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>TrainInfoServlet</servlet-name>
+    <servlet-class>com.testbs.servlet.TrainInfoServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CheckInfoServlet</servlet-name>
+    <servlet-class>com.testbs.servlet.CheckInfoServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RetireInfoServlet</servlet-name>
+    <servlet-class>com.testbs.servlet.RetireInfoServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdjustRestServlet</servlet-name>
+    <servlet-class>com.testbs.servlet.AdjustRestServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RewardPunishServlet</servlet-name>
+    <servlet-class>com.testbs.servlet.RewardPunishServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdminInfoServlet</servlet-name>
+    <servlet-class>com.testbs.servlet.AdminInfoServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>WorkLeaveServlet</servlet-name>
+    <servlet-class>com.testbs.servlet.WorkLeaveServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>OverWorkServlet</servlet-name>
+    <servlet-class>com.testbs.servlet.OverWorkServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.testbs.entity.LoginServlet</servlet-class>
+  </servlet>
+
 
 
   <servlet-mapping>
@@ -56,6 +111,42 @@
   <servlet-mapping>
     <servlet-name>DimissionInfoServlet</servlet-name>
     <url-pattern>/servlet/DimissionInfoServlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>TrainInfoServlet</servlet-name>
+    <url-pattern>/servlet/TrainInfoServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>CheckInfoServlet</servlet-name>
+    <url-pattern>/servlet/CheckInfoServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>RetireInfoServlet</servlet-name>
+    <url-pattern>/servlet/RetireInfoServlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>AdjustRestServlet</servlet-name>
+    <url-pattern>/servlet/AdjustRestServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>RewardPunishServlet</servlet-name>
+    <url-pattern>/servlet/RewardPunishServlet</url-pattern>
+  </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>AdminInfoServlet</servlet-name>
+    <url-pattern>/servlet/AdminInfoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>WorkLeaveServlet</servlet-name>
+    <url-pattern>/servlet/WorkLeaveServlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>OverWorkServlet</servlet-name>
+    <url-pattern>/servlet/OverWorkServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/servlet/LoginServlet</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

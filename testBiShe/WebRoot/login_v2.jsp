@@ -20,6 +20,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/style.min.css" rel="stylesheet">
     <link href="css/login.min.css" rel="stylesheet">
+	 <!-- Sweet Alert -->
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
@@ -38,22 +40,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <h1>[ S+D ]</h1>
                     </div>
                     <div class="m-b"></div>
-                    <h4>欢迎使用 <strong>名字 人力资源管理系统</strong></h4>
+                    <h4>欢迎使用 <strong>人力资源管理系统</strong></h4>
                     <ul class="m-b">
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 90后有新想法</li>
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 界面友好简洁</li>
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 操作简单</li>
                     </ul>
-                    <strong>还没有账号？ <a href="register.html">立即注册&raquo;</a></strong>
+                    <strong>还没有账号？ <a href="register.jsp">立即注册&raquo;</a></strong>
                 </div>
             </div>
             <div class="col-sm-5">
-                <form method="post" action="index.jsp">
+                <form action="<%=request.getContextPath()%>/servlet/LoginServlet" method="post" name="loginForm">
                     <h4 class="no-margins">登录：</h4>
-                    <p class="m-t-md">登录到名字 人力资源管理系统</p>
-                    <input type="text" class="form-control uname" placeholder="用户名" />
-                    <input type="password" class="form-control pword m-b" placeholder="密码" />
-                    <a href="404.html">忘记密码了？</a>
+                    <input id="account" type="text" class="form-control uname" placeholder="用户名" name="account"/>
+                    <input id="password" type="password" class="form-control pword m-b" placeholder="密码" name="password"/>               
                     <button id="login-btn" class="btn btn-success btn-block">登录</button>
                 </form>
             </div>
@@ -64,6 +64,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
     </div>
+    
+    
+    
+    
+    
+  <script src="js/jquery.min.js?v=2.1.4"></script>
+  <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+ 
+    
+    
 </body>
 
 </html>

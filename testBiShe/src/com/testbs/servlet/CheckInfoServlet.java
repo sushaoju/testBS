@@ -2,9 +2,6 @@ package com.testbs.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -112,7 +109,29 @@ public class CheckInfoServlet extends HttpServlet {
 			PrintWriter out = resp.getWriter();
 			out.write(json.toString());
 			out.close();
-		} else if (reqCode.equals("findCheckInfoById")) {
+		} 
+		
+else if (reqCode.equals("findCheckInfoByCondition")) {
+			
+			String stuffName = req.getParameter("stuffName"); //姓名
+			String stuffID = req.getParameter("stuffID"); // 工号
+			String stuffDepart = req.getParameter("stuffDepart"); // 部门
+			
+			CheckInfoService checkInfoService = new CheckInfoService();
+			List<CheckInfo> checkInfos = checkInfoService.findCheckInfoByCondition(stuffID,stuffName,stuffDepart);
+	
+			JSONObject json = new JSONObject();
+			json.put("rows", checkInfos);
+			json.put("total",checkInfos.size());
+
+			resp.setContentType("text/html;charset=utf-8");
+			PrintWriter out = resp.getWriter();
+			out.write(json.toString());
+			out.close();
+		} 
+		
+		
+		else if (reqCode.equals("findCheckInfoById")) {
 			// 获取部门编号
 			String stuffID = req.getParameter("stuffID");
 			// 调用Model，查询该部门
@@ -131,11 +150,11 @@ public class CheckInfoServlet extends HttpServlet {
 			String stuffName = req.getParameter("stuffName");
 			String stuffDepart = req.getParameter("stuffDepart");
 			String stuffShift = req.getParameter("stuffShift");
-			double workHour = (Double.parseDouble(req.getParameter("workHour")));
+			String s1=req.getParameter("workHour");
+			Double workHour = Double.parseDouble(s1);
 			String workDate = req.getParameter("workDate");
-			double lateHour = (Double.parseDouble(req.getParameter("lateHour")));
-			double absentHour = (Double.parseDouble(req
-					.getParameter("absentHour")));
+			Double lateHour = Double.parseDouble(req.getParameter("lateHour"));
+			Double absentHour = Double.parseDouble(req.getParameter("absentHour"));
 
 			CheckInfo checkInfo = new CheckInfo(stuffName, stuffDepart,
 					stuffShift, workHour, workDate, lateHour, absentHour);
@@ -151,7 +170,8 @@ public class CheckInfoServlet extends HttpServlet {
 				out.write("考勤信息修改失败！");
 			}
 			out.close();
-		} else if (reqCode.equals("addCheckInfo")) {
+		} 
+		else if (reqCode.equals("addCheckInfo")) {
 			// 要做新增用户操作
 			addCheckInfo(req, resp);
 		} else if (reqCode.equals("delCheckInfo")) {

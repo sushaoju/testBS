@@ -75,10 +75,10 @@ public class OverWorkServlet extends HttpServlet {
 			int pageSize1 = Integer.valueOf(pageSize);
 			// 获取查询参数
 			String stuffID = req.getParameter("stuffID");
-
+			String stuffName = req.getParameter("stuffName");
 			OverWorkInfoService overworkInfoService = new OverWorkInfoService();
 			List<OverWorkInfo> overworkInfos = overworkInfoService
-					.getOverWorkInfoForPage(stuffID, pageNo1, pageSize1);
+					.getOverWorkInfoForPage(stuffID,stuffName, pageNo1, pageSize1);
 			int total = overworkInfoService.getTotalCount(stuffID);
 
 			JSONObject json = new JSONObject();
@@ -90,7 +90,7 @@ public class OverWorkServlet extends HttpServlet {
 			out.write(json.toString());
 			out.close();
 		} 
-		else if (reqCode.equals("findAllAdjustRestInfos")) {
+		else if (reqCode.equals("findAllOverWorkInfos")) {
 			OverWorkInfoService overworkInfoService = new OverWorkInfoService();
 			List<OverWorkInfo> overworkInfos = overworkInfoService.findAllOverWorkInfos();
 
@@ -102,7 +102,24 @@ public class OverWorkServlet extends HttpServlet {
 			PrintWriter out = resp.getWriter();
 			out.write(json.toString());
 			out.close();
-		} else if (reqCode.equals("findAdjustRestInfoById")) {
+		}else if (reqCode.equals("findOverWorkInfoByCondition")) {
+			
+			String stuffName = req.getParameter("stuffName"); //姓名
+			String stuffID = req.getParameter("stuffID"); // 工号
+			String stuffDepart = req.getParameter("stuffDepart"); // 部门
+			
+			OverWorkInfoService overworkInfoService = new OverWorkInfoService();
+			List<OverWorkInfo> overworkInfos = overworkInfoService.findOverWorkInfoByCondition(stuffID,stuffName,stuffDepart);
+	
+			JSONObject json = new JSONObject();
+			json.put("rows", overworkInfos);
+			json.put("total",overworkInfos.size());
+
+			resp.setContentType("text/html;charset=utf-8");
+			PrintWriter out = resp.getWriter();
+			out.write(json.toString());
+			out.close();
+		}  else if (reqCode.equals("findAdjustRestInfoById")) {
 			// 获取部门编号
 			String stuffID = req.getParameter("stuffID");
 			// 调用Model，查询该部门
@@ -117,7 +134,7 @@ public class OverWorkServlet extends HttpServlet {
 		} else if (reqCode.equals("updateOverWorkInfo")) {
 			// 提取数据
 //			int id = (Integer.parseInt(req.getParameter("id")));
-			
+			String stuffID = req.getParameter("stuffID");
 			String stuffName = req.getParameter("stuffName");
 			String stuffDepart = req.getParameter("stuffDepart");
 			String overworkStart = req.getParameter("overworkStart");
@@ -129,7 +146,7 @@ public class OverWorkServlet extends HttpServlet {
 
 		
 			//entity里要有相应的参数组合
-			OverWorkInfo overworkInfo = new OverWorkInfo(stuffName,
+			OverWorkInfo overworkInfo = new OverWorkInfo(stuffID,stuffName,
 					stuffDepart, overworkStart,overworkEnd,overworkHours,overworkReason,overworkMoney,overworkApprover);
 			// 调用Model
 			OverWorkInfoService overworkInfoService = new OverWorkInfoService();

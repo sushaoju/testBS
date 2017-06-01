@@ -69,9 +69,30 @@ public class AdminInfo {
 
 
 
-	public AdminInfo(String stuffName, String account, String password) {
+	public AdminInfo(String stuffID, String stuffName, String resignDate,
+			String account, String password) {
 		super();
+		this.stuffID = stuffID;
 		this.stuffName = stuffName;
+		this.resignDate = resignDate;
+		this.account = account;
+		this.password = password;
+	}
+
+	
+	
+	public AdminInfo(String stuffID, String account, String password) {
+		super();
+		this.stuffID = stuffID;
+		this.account = account;
+		this.password = password;
+	}
+
+	
+	
+	
+	public AdminInfo(String account, String password) {
+		super();
 		this.account = account;
 		this.password = password;
 	}

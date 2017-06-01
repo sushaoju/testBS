@@ -229,6 +229,7 @@ public class DimissionInfoService extends BaseDao {
 		params.add(dimissionInfo.getDimissInterface());
 		params.add(dimissionInfo.getDimissReason());
 		params.add(dimissionInfo.getDimissDate());
+		params.add(dimissionInfo.getStuffID());
 
 		return this.executeUpdate(update, params);
 	}

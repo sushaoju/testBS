@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import com.testbs.entity.AdminInfo;
+import com.testbs.entity.TrainInfo;
 import com.testbs.service.AdminInfoService;
+import com.testbs.service.TrainInfoService;
 
 public class AdminInfoServlet extends HttpServlet {
 
@@ -85,10 +87,11 @@ public class AdminInfoServlet extends HttpServlet {
 			int pageSize1 = Integer.valueOf(pageSize);
 			// 获取查询参数
 			String stuffID = req.getParameter("stuffID");
+			String stuffName = req.getParameter("stuffName");
 
 			AdminInfoService adminInfoService = new AdminInfoService();
 			List<AdminInfo> adminInfos = adminInfoService.getAdminInfoForPage(
-					stuffID, pageNo1, pageSize1);
+					stuffID, stuffName,pageNo1, pageSize1);
 			int total = adminInfoService.getTotalCount(stuffID);
 
 			JSONObject json = new JSONObject();
@@ -111,7 +114,27 @@ public class AdminInfoServlet extends HttpServlet {
 			PrintWriter out = resp.getWriter();
 			out.write(json.toString());
 			out.close();
-		} else if (reqCode.equals("findAdminInfoById")) {
+		} 
+		
+	else if (reqCode.equals("findAdminInfoByCondition")) {
+				
+				String stuffName = req.getParameter("stuffName"); //姓名
+				String stuffID = req.getParameter("stuffID"); // 工号
+				
+				AdminInfoService adminInfoService = new AdminInfoService();
+				List<AdminInfo> adminInfos = adminInfoService.findAdminInfoByCondition(stuffID,stuffName);
+		
+				JSONObject json = new JSONObject();
+				json.put("rows", adminInfos);
+				json.put("total",adminInfos.size());
+	
+				resp.setContentType("text/html;charset=utf-8");
+				PrintWriter out = resp.getWriter();
+				out.write(json.toString());
+				out.close();
+			} 
+		
+		else if (reqCode.equals("findAdminInfoById")) {
 			// 获取部门编号
 			String stuffID = req.getParameter("stuffID");
 			// 调用Model，查询该部门
@@ -127,11 +150,11 @@ public class AdminInfoServlet extends HttpServlet {
 			// 提取数据
 			// int id = (Integer.parseInt(req.getParameter("id")));
 
-			String stuffName = req.getParameter("stuffName");
+			String stuffID = req.getParameter("stuffID");
 			String account = req.getParameter("account");
 			String password = req.getParameter("password");
 
-			AdminInfo adminInfo = new AdminInfo(stuffName, account, password);
+			AdminInfo adminInfo = new AdminInfo(stuffID, account, password);
 			// 调用Model
 			AdminInfoService adminInfoService = new AdminInfoService();
 			int result = adminInfoService.updateAdminInfo(adminInfo);
@@ -144,10 +167,12 @@ public class AdminInfoServlet extends HttpServlet {
 				out.write("管理员修改失败！");
 			}
 			out.close();
-		} else if (reqCode.equals("addAdminInfo")) {
+		} 
+		else if (reqCode.equals("addAdminInfo")) {
 			// 要做新增用户操作
 			addAdminInfo(req, resp);
-		} else if (reqCode.equals("delAdminInfo")) {
+		}
+		else if (reqCode.equals("delAdminInfo")) {
 			delAdminInfo(req, resp);
 		}
 

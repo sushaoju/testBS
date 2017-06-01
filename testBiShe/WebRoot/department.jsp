@@ -64,9 +64,7 @@
         </div>
 
         <div class="col-md-1 pull-right" style="margin-right: 50px;">
-        <button class="btn btn-danger " type="button">
-        <i class="fa fa-trash-o fa-fw"></i>删除所选项
-        </button>
+        
         </div>
         <div class="col-md-1 pull-right" style="margin-right: 20px;">
         <button id="depart_addBtn" class="btn btn-info" type="button">
@@ -92,8 +90,6 @@
         <table id="example"  class="table table-striped table-hover" data-mobile-responsive="true">
         <thead>
         <tr>
-        <th><input type="checkbox" id="s-selectAll"></th>
-
         <th>ID</th>
         <th>部门名称</th>
         <th>部门负责人</th>
@@ -439,7 +435,6 @@
 							depTbl.empty();
 
 							depInfoStr = $('<tr>' +
-							'<td><input type="checkbox"></td>' +
 							'<td>' + data.departID + '</td>' +
 							'<td>' + data.departName + '</td>' +
 							'<td>' + data.departPrince + '</td>' +
@@ -484,7 +479,6 @@
 							 
 							$(result).each(function (key) {
 								depInfoStr = $('<tr>' +
-								'<td><input type="checkbox" class="s-option"></td>' +
 								'<td>' + result[key].departID + '</td>' +
 								'<td>' + result[key].departName + '</td>' +
 								'<td>' + result[key].departPrince + '</td>' +

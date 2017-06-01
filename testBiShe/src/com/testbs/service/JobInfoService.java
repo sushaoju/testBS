@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.testbs.dao.BaseDao;
+import com.testbs.entity.DimissionInfo;
 import com.testbs.entity.JobInfo;
 
 public class JobInfoService extends BaseDao{
@@ -97,6 +98,96 @@ public class JobInfoService extends BaseDao{
 				return jobInfos;
 			}
 		
+			
+			//根据条件返数据
+			public List<JobInfo> findJobInfoByCondition(String stuffID,String stuffName,String stuffDepart) {
+				List<JobInfo> jobInfos = new ArrayList<JobInfo>();
+				List<Object> paramsTemp = new ArrayList<Object>();
+				List<Object> params = new ArrayList<Object>();
+								 
+				 String	query ="";
+				 ResultSet rs;
+				 
+				 if((stuffID!=""&&stuffID!=null)&&(stuffName!=""&&stuffName!=null)&&(stuffDepart!=""&&stuffDepart!=null)){
+					 params.add(stuffID);		
+					 params.add(stuffName);
+					 params.add(stuffDepart);
+					 paramsTemp=params;
+					 
+					 query = " select *  from  jobinfo  where stuffID = ? and stuffName = ? and stuffDepart =?";			
+					
+				 }
+				 else  if((stuffID==""||stuffID==null)&&(stuffDepart==""||stuffDepart==null)&&(stuffName!=""&&stuffName!=null)){
+					
+					 params.add(stuffName);
+					 paramsTemp=params;		
+					 query="select *  from  jobinfo  where stuffName = ?";
+				 }
+				 else  if((stuffID==""||stuffID==null)&&(stuffName==""||stuffName==null)&&(stuffDepart!=""&&stuffDepart!=null)){
+					
+					 params.add(stuffDepart);
+					 paramsTemp=params;
+					 query="select *  from  jobinfo  where stuffDepart = ?";
+				 }
+				 else  if((stuffDepart==""||stuffDepart==null)&&(stuffName==""||stuffName==null)&&(stuffID!=""&&stuffID!=null)){
+					 
+					 params.add(stuffID);
+					 paramsTemp=params;
+					 query="select *  from  jobinfo  where stuffID = ?";
+				 }
+				 else  if((stuffID!=""||stuffID!=null)&&(stuffName!=""||stuffName!=null)&&(stuffDepart==""&&stuffDepart==null)){
+					 params.add(stuffID);
+					 params.add(stuffName);
+					 paramsTemp=params;
+					 query="select *  from  jobinfo  where stuffID = ? and stuffName = ?";
+				 }
+				 else  if((stuffID!=""||stuffID!=null)&&(stuffName==""||stuffName==null)&&(stuffDepart!=""&&stuffDepart!=null)){
+					 
+					 params.add(stuffID);
+					 params.add(stuffDepart);
+					 paramsTemp=params;
+					 query="select *  from  jobinfo  where stuffID = ? and stuffDepart =?";
+				 }
+				 else  if((stuffID==""||stuffID==null)&&(stuffName!=""||stuffName!=null)&&(stuffDepart!=""&&stuffDepart!=null)){
+					 
+					 params.add(stuffName);
+					 params.add(stuffDepart);
+					 paramsTemp=params;
+					 query="select *  from  jobinfo  where stuffName = ? and stuffDepart =?";
+				 }
+						 
+				 rs = this.executeQuery(query, paramsTemp);
+				 
+				try {
+					while(rs.next()){     
+					        String stuffID1 = rs.getString("stuffID");	
+							String stuffName1=rs.getString("stuffName");
+							String stuffDepart1=rs.getString("stuffDepart");
+							String stuffDuty=rs.getString("stuffDuty");	
+							
+							String stuffStatus = rs.getString("stuffStatus");	
+							Double stuffMoney=rs.getDouble("stuffMoney");
+							String adjustJob=rs.getString("adjustJob");
+							String adjustMoney=rs.getString("adjustMoney");	
+										
+							JobInfo jobInfo = new JobInfo(stuffID1, stuffName1,stuffDepart1,stuffDuty,stuffStatus,stuffMoney,adjustJob,adjustMoney);
+							jobInfos.add(jobInfo);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally{
+					this.close();
+				}
+				return jobInfos;
+			}
+		
+		
+			
+			
+			
+			
+			
 			//根据id返数据	
 			public JobInfo findJobInfoById(String stuffID) {
 				
@@ -137,14 +228,24 @@ public class JobInfoService extends BaseDao{
 		  		
 			//修改	
 			public int updateJobInfo(JobInfo jobInfo) {
-				String update =" update jobinfo set adjustJob = ?,adjustMoney = ? where stuffID = ? ";
-				List<Object> params = new ArrayList<Object>();
-//				params.add(departmentInfo.getId());
 				
+				String update =" update jobinfo set stuffID=?, stuffDepart=?,stuffDuty=? , stuffStatus=? ,  "+
+				"contractBegin=? ,contractEnd=? ,stuffMoney = ?,adjustJob = ? ,adjustMoney = ? where id = ? ";
+				List<Object> params = new ArrayList<Object>();
+				
+				params.add(jobInfo.getStuffID());
+				params.add(jobInfo.getStuffDepart());
+				params.add(jobInfo.getStuffDuty());
+				params.add(jobInfo.getStuffStatus());
+				params.add(jobInfo.getContractBegin());
+				params.add(jobInfo.getContractEnd());
+				params.add(jobInfo.getStuffMoney());
 				params.add(jobInfo.getAdjustJob());
 				params.add(jobInfo.getAdjustMoney());
-				params.add(jobInfo.getStuffID());
-		
+				params.add(jobInfo.getId());
+				
+				
+				
 				return this.executeUpdate(update, params);
 			}
 

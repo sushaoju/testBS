@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="form-group">
             <div class="col-sm-6">
                 <label for="e_stuffID">编号:</label>
-                <span id="e_stuffID">s001</span>
+                <span id="e_stuffID"></span>
             </div>
             <div class="clearfix hidden-xs"></div>
         </div>
@@ -117,26 +117,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="from-group">
             <div class="col-sm-6">
                 <label for="e_stuffName">姓名:</label>
-                <input class="form-control" type="text" placeholder="请输入姓名" id="e_stuffName">
+				<span id="e_stuffName"></span>
             </div>
 
             <div class="col-sm-6">
                 <label for="e_stuffDepart">所在部门:</label>
-                <select name="e_stuffDepart" id="e_stuffDepart" class="form-control">
-                    <option value="0">技术部</option>
-                    <option value="1">财务部</option>
-                </select>
+				<span id="e_stuffDepart"></span>
             </div>
         </div>
 
         <div class="from-group">
             <div class="col-sm-6">
                 <label for="e_stuffDuty">岗位:</label>
-                <input class="form-control" type="text" placeholder="请输入岗位" id="e_stuffDuty">
+				<span id="e_stuffDuty"></span>
             </div>
             <div class="col-sm-6">
                 <label for="e_dimissDate">离职时间:</label>
-                <input class="form-control" type="text" placeholder="请输入到岗日期" id="e_dimissDate">
+                <input class="form-control" type="date" placeholder="请输入到岗日期" id="e_dimissDate">
             </div>
         </div>
 
@@ -155,7 +152,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         <div class="from-group">
             <div class="col-sm-6 text-center">
-                <button class="btn btn-primary btn-lg" type="button">修改</button>
+                <button class="btn btn-primary btn-lg" type="button" id="editSubmit_btn">修改</button>
 
             </div>
 
@@ -246,7 +243,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
 	$(function(){
 		//编辑按钮 弹框
-		$(".edit_btn").click(alertEditBox);
+		$("#dimiss_tbl").on('click','.edit_btn',function(){
+			var stuffID=$(this).parent("td").parent("tr").find("td").eq(0).text();   //员工工号
+			var stuffName=$(this).parent("td").parent("tr").find("td").eq(1).text();   
+			var stuffDepart=$(this).parent("td").parent("tr").find("td").eq(2).text(); 
+            var stuffDuty=$(this).parent("td").parent("tr").find("td").eq(3).text(); 	
+
+            $("#e_stuffID").text(stuffID);
+			$("#e_stuffName").text(stuffName);
+			$("#e_stuffDepart").text(stuffDepart);
+			$("#e_stuffDuty").text(stuffDuty);
+
+			
+			alertEditBox();
+		});
 		function alertEditBox() {
 			layer.open({
 				type: 1,
@@ -327,10 +337,69 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var dimissReason = $("#a_dimissReason").val();
 			var dimissDate = $("#a_dimissDate").val();
 			
+			var type_str="warning";
+			if($.trim(dimissInterface)==''){warn_str="请输入正确格式的交接人";sweetWarn(warn_str,type_str);return false;}
+			if($.trim(dimissDate)==''){warn_str="请输入正确格式的离职日期";sweetWarn(warn_str,type_str);return false;}
+			if($.trim(stuffID)==''){warn_str="请输入正确格式的员工工号";sweetWarn(warn_str,type_str);return false;}
+			
 			addDimissionInfo(stuffID,stuffName,stuffDepart,stuffDuty,dimissInterface,dimissReason,dimissDate);
 		});
 		
+		
+		
+		//编辑提交按钮
+		$("#editSubmit_btn").click(function(){
+			var stuffID=$("#e_stuffID").text();
+			var stuffName=$("#e_stuffName").text();
+			var stuffDepart=$("#e_stuffDepart").text();
+			var stuffDuty=$("#e_stuffDuty").text();
 			
+			var dimissDate=$("#e_dimissDate").val();
+			var dimissInterface=$("#e_dimissInterface").val();
+			var dimissReason=$("#e_dimissReason").val();
+			
+			var type_str="warning";
+			if($.trim(dimissInterface)==''){warn_str="请输入正确格式的交接人";sweetWarn(warn_str,type_str);return false;}
+			if($.trim(dimissDate)==''){warn_str="请输入正确格式的离职日期";sweetWarn(warn_str,type_str);return false;}
+			
+			
+			updateDimissionInfo(stuffID,stuffName,stuffDepart,stuffDuty,dimissDate,dimissInterface,dimissReason);
+		});
+		
+		
+		
+		//修改员工离职信息表
+		function updateDimissionInfo(stuffID,stuffName,stuffDepart,stuffDuty,dimissDate,dimissInterface,dimissReason){
+			$.ajax({
+				url: "<%=request.getContextPath()%>/servlet/DimissionInfoServlet",
+				type: "post",
+				cache: false,
+				dataType: "text",
+				data: {
+					"reqCode": "updateDimissionInfo", //请求码
+					"stuffName":stuffName, //姓名
+					"stuffID":stuffID, //工号
+					"stuffDepart":stuffDepart,  //部门
+					"stuffDuty":stuffDuty,
+					"dimissInterface":dimissInterface,
+					"dimissReason":dimissReason,
+					"dimissDate":dimissDate,
+				},
+				error: function () {
+					alert("修改员工离职信息表请求失败！");
+				},
+				success:function(data){
+					$("#edit_closeBtn").click();
+					var warn_str="修改离职信息表请求成功！";
+	                var type_str="success";
+				    sweetWarn(warn_str,type_str);
+					findAllDimissionInfos();//获取全部离职人员信息
+				}
+			})
+		}
+		
+		
+				
 		//增加  离职信息表
 		function addDimissionInfo(stuffID,stuffName,stuffDepart,stuffDuty,dimissInterface,dimissReason,dimissDate){
 			$.ajax({
@@ -346,13 +415,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					"stuffDuty":stuffDuty,
 					"dimissInterface":dimissInterface,
 					"dimissReason":dimissReason,
-					"dimissDate":dimissDate,
+					"dimissDate":dimissDate
 				},
 				error: function () {
 					alert("增加离职信息表请求失败！");
 				},
 				success:function(data){
-					alert("增加离职信息表请求成功！");
+					$("#add_closeBtn").click();
+					var warn_str="增加离职信息表请求成功！";
+	                var type_str="success";
+				    sweetWarn(warn_str,type_str);
+					
+					delStuffInfo(stuffID);//删除员工基本信息表
+					delJobInfo(stuffID);//删除员工岗位信息表
+					
+					findAllDimissionInfos();//获取全部离职人员信息
 				}
 			})
 		}
@@ -376,6 +453,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				success:function(data){
 					if(data=="null"||data==null){
 						alert("查询不到此员工");
+						$("#a_stuffID").val("");
 						return false;
 					}else{
 						var data=JSON.parse(data);
@@ -402,9 +480,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				alert("删除员工基本信息请求失败！");
 			},
 			success:function(data){
-				alert("删除员工基本信息请求成功！");
-				
-				findAllDimissionInfos();
 			}
 		  })
 		}
@@ -424,9 +499,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				alert("删除员工岗位信息请求失败！");
 			},
 			success:function(data){
-				alert("删除员工岗位信息成功！");
-				
-				findAllDimissionInfos();
 			}
 		  })
 		}
@@ -475,7 +547,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					alert("条件查询人员名单数据请求失败！");
 				},
 				success:function(data){
-					alert("条件查询人员名单数据请求成功！");
 					var tbl=$("#dimiss_tbl tbody");
 					var tbl_str='';   //插入字符串
 					var result = data.rows;

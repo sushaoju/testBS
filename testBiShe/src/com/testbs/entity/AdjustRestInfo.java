@@ -100,6 +100,19 @@ public class AdjustRestInfo {
 		this.adjustApprover = adjustApprover;
 	}
 
+	public AdjustRestInfo(String stuffID, String stuffName, String stuffDepart,
+			String adjustType, String adjustBefore, String adjustAfter,
+			String adjustApprover) {
+		super();
+		this.stuffID = stuffID;
+		this.stuffName = stuffName;
+		this.stuffDepart = stuffDepart;
+		this.adjustType = adjustType;
+		this.adjustBefore = adjustBefore;
+		this.adjustAfter = adjustAfter;
+		this.adjustApprover = adjustApprover;
+	}
+
 	public AdjustRestInfo() {
 		super();
 		// TODO Auto-generated constructor stub

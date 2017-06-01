@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <option value="1">财务部</option>
                     </select>
 
-                    <button class="btn btn-info" type="button"><i class="fa fa-search fa-fw"></i>查询</button>
+                    <button  id="sel_btn" class="btn btn-info" type="button"><i class="fa fa-search fa-fw"></i>查询</button>
 
                 </div>
             </form>
@@ -75,155 +75,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="ibox-content">
             <div class="row row-lg">
                 <div class="col-sm-12">
-                    <div class="example-wrap">
-                        <div class="example">
-                            <table id="exampleTableColumns" data-mobile-responsive="true">
+                            <table id="salary_tbl" data-mobile-responsive="true" class="table table-striped table-hover">
                                 <thead>
                                 <tr>
-                                    <th data-field="state" data-checkbox="true"></th>
-                                    <th data-field="num" data-switchable="false">编号</th>
-                                    <th data-field="name" data-switchable="false">工号</th>
-                                    <th data-field="price" data-switchable="false">姓名</th>
-                                    <th data-field="column4" data-visible="true">部门</th>
+                                    <th>工号</th>
+                                    <th>姓名</th>
+                                    <th>部门</th>
+									<th>岗位</th>
 
-                                    <th data-field="column5" data-visible="true">岗位工资</th>
-                                    <th data-field="column6" data-visible="false">扣除</th>
-                                    <th data-field="column7" data-visible="false">奖励</th>
-                                    <th data-field="column8" data-visible="false">补贴</th>
-                                    <th data-field="column9" data-visible="true">结算状态</th>
-
-                                    <th data-field="column10" data-switchable="false">操作</th>
+                                    <th>基本工资</th>
+                                    <th>扣除</th>
+                                    <th>奖励</th>
+                                    <th>补贴</th>
+                                    <th>实发工资</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                 <tr>
-                                    <td></td>
-                                    <td>1</td>
-                                    <td>2</td>
-                                    <td>sugar</td>
-                                    <td>技术部</td>
-
-                                    <td>6000</td>
-                                    <td>0</td>
-                                    <td>1000</td>
-                                    <td>2000</td>
-                                    <td>已结算</td>
-
-                                    <td>
-                                        <button class="btn btn-info edit_btn" type="button">
-                                            <i class="fa fa-list fa-fw"></i>详细
-                                        </button>
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
     <!--查询结果区 end-->
 </div>
-
-
-<!--编辑弹框 start-->
-<div id="edit_box">
-    <h2>编辑调岗信息</h2>
-    <form>
-        <div class="form-group">
-            <div class="col-sm-6">
-                <label for="e_stuffID">编号:</label>
-                <span id="e_stuffID">s001</span>
-            </div>
-            <div class="clearfix hidden-xs"></div>
-        </div>
-
-        <div class="from-group">
-            <div class="col-sm-6">
-                <label for="e_stuffName">姓 名 :</label>
-                <input class="form-control" type="text" placeholder="请输入姓名" id="e_stuffName">
-            </div>
-
-            <div class="col-sm-6">
-                <label for="e_stuffDepart">所在部门:</label>
-                <select name="e_stuffDepart" id="e_stuffDepart" class="form-control">
-                    <option value="0">技术部</option>
-                    <option value="1">财务部</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="from-group">
-            <div class="col-sm-6">
-                <label for="e_stuffDuty">岗 位 :</label>
-                <input class="form-control" type="text" placeholder="请输入岗位" id="e_stuffDuty">
-            </div>
-            <div class="col-sm-6">
-                <label for="e_adjustJob">调岗时间:</label>
-                <input class="form-control" type="text" placeholder="请输入调岗时间" id="e_adjustJob">
-            </div>
-        </div>
-
-        <div class="from-group">
-            <div class="col-sm-6 text-center">
-                <button class="btn btn-primary btn-lg" type="button">修改</button>
-
-            </div>
-
-            <div class="col-sm-6 text-center">
-                <button id="edit_closeBtn" class="btn btn-default btn-lg" type="button">取消</button>
-            </div>
-        </div>
-    </form>
-</div>
-<!--编辑弹框 end-->
-
-
-<!--增加弹框 start-->
-<div id="add_box">
-    <h2>增加调岗信息</h2>
-    <form>
-
-        <div class="from-group">
-            <div class="col-sm-6">
-                <label for="a_stuffName">姓 名 :</label>
-                <input class="form-control" type="text" placeholder="请输入姓名" id="a_stuffName">
-            </div>
-
-            <div class="col-sm-6">
-                <label for="a_stuffDepart">所在部门:</label>
-                <select name="a_stuffDepart" id="a_stuffDepart" class="form-control">
-                    <option value="0">技术部</option>
-                    <option value="1">财务部</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="from-group">
-            <div class="col-sm-6">
-                <label for="a_stuffDuty">岗 位 :</label>
-                <input class="form-control" type="text" placeholder="请输入岗位" id="a_stuffDuty">
-            </div>
-            <div class="col-sm-6">
-                <label for="a_adjustJob">调岗时间:</label>
-                <input class="form-control" type="text" placeholder="请输入调岗时间" id="a_adjustJob">
-            </div>
-        </div>
-
-        <div class="from-group">
-            <div class="col-sm-6 text-center">
-                <button class="btn btn-primary btn-lg" type="button">增加</button>
-            </div>
-
-            <div class="col-sm-6 text-center">
-                <button id="add_closeBtn" class="btn btn-default btn-lg" type="button">取消</button>
-            </div>
-        </div>
-    </form>
-</div>
-<!--增加弹框 end-->
 
 
 <script src="js/jquery.min.js?v=2.1.4"></script>
@@ -238,42 +115,167 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script>
 
-    //编辑按钮 弹框
-    $(".edit_btn").click(alertEditBox);
-    function alertEditBox() {
-        layer.open({
-            type: 1,
-            closeBtn: true,
-            title: false,
-            area: ['600px', '350px'],
-            shadeClose: false, //点击遮罩不关闭
-            content: $('#edit_box')
-        });
-
-        $("#edit_box").show();
-    }
-    $("#edit_closeBtn").click(function () {
-        $(".layui-layer-close2").click();
-    });
-
-
-    //增加按钮 弹框
-    $("#applicant_addBtn").click(alertAddBox);
-    function alertAddBox() {
-        layer.open({
-            type: 1,
-            closeBtn: true,
-            title: false,
-            area: ['550px', '300px'],
-            shadeClose: false, //点击遮罩不关闭
-            content: $('#add_box')
-        });
-
-        $("#add_box").show();
-    }
-    $("#add_closeBtn").click(function () {
-        $(".layui-layer-close2").click();
-    });
+$(function(){
+	
+	//搜索部门下拉列表
+	findAllDepartmentInfo();
+		//获得 部门查询下拉列表
+		function findAllDepartmentInfo() {
+			$.ajax({
+				url: "<%=request.getContextPath()%>/servlet/DepartmentInfoServlet",
+				type: "post",
+				cache: false,
+				dataType: "json",
+				data: {
+					"reqCode": "findAllDepartmentInfos", //请求码
+				},
+				error: function () {
+					alert("全部部门信息数据请求失败！");
+				},
+				success: function (data) {
+					var depStr='';   //查询下拉框  插入字符串
+					var str1=$('<option value="">全部</option>');  //查询下拉框  全部选项
+					var result = data.rows;
+					var depSel=$("#s_stuffDepart"); //查询下拉列表
+					depSel.empty();
+					depSel.append(str1);
+					 
+					$(result).each(function (key) {
+						depStr=$('<option value="'+result[key].departID+'">'+result[key].departName+'</option>');
+						depSel.append(depStr);
+					});
+				}
+			});
+		}
+		
+		
+		
+	//获取全部信息
+	findAllSalaryInfos();
+	
+	//获取所有的薪资信息
+		function findAllSalaryInfos(){
+			$.ajax({
+				 url: "<%=request.getContextPath()%>/servlet/SalaryInfoServlet",
+				 type: "post",
+				 cache: false,
+				 dataType: "json",
+				 data: {
+				 	"reqCode": "findAllSalaryInfos", //请求码
+				 },
+				 error: function () {
+				 	alert("获取所有的薪资信息请求失败！");
+				 },
+				 success:function(data){
+					var tbl=$("#salary_tbl tbody");
+				    var tbl_str='';   //插入字符串
+				    var result = data.rows;
+				    tbl.empty();
+					
+					$(result).each(function (key) {		
+						tbl_str=$('<tr>'+
+                                    '<td>'+result[key].stuffID+'</td>'+
+                                    '<td>'+result[key].stuffName+'</td>'+
+                                    '<td>'+result[key].stuffDepart+'</td>'+
+                                    '<td>'+result[key].stuffDuty+'</td>'+
+                                    '<td>'+result[key].basicSalary+'</td>'+
+                                    '<td>'+result[key].delSalary+'</td>'+
+                                    '<td>'+result[key].addSalary+'</td>'+
+                                    '<td>'+result[key].accountAwce+'</td>'+
+                                    '<td>'+result[key].fSalary+'</td>'+
+                                '</tr>');
+						tbl.append(tbl_str);
+					});
+						 
+				 }	
+			});
+			
+		}
+		
+	
+	
+	//查询按钮
+	$("#sel_btn").click(function(){
+			var stuffID = $("#s_stuffID").val();
+			var stuffName = $("#s_stuffName").val();
+			var stuffDepart="";
+			if($("#s_stuffDepart").val()==""){
+			    stuffDepart ="";
+			}else{
+			 stuffDepart = $("#s_stuffDepart").find("option:selected").text();
+			}
+			
+			if(stuffID==""&&stuffName==""&&stuffDepart==""){
+				findAllSalaryInfos();
+			}else{
+				findSalaryInfoByCondition(stuffID,stuffName,stuffDepart);
+			}
+			
+		});
+		
+	
+	
+	//条件查询员工奖惩信息
+		function findSalaryInfoByCondition(stuffID,stuffName,stuffDepart){
+			$.ajax({
+				url: "<%=request.getContextPath()%>/servlet/SalaryInfoServlet",
+				type: "post",
+				cache: false,
+				dataType: "json",
+				data: {
+					"reqCode": "findSalaryInfoByCondition", //请求码
+					"stuffName":stuffName, //姓名
+					"stuffID":stuffID, //工号
+					"stuffDepart":stuffDepart  //部门
+				},
+				error: function () {
+					alert("条件查询人员名单数据请求失败！");
+				},
+				success:function(data){
+					var tbl=$("#salary_tbl tbody");
+					var tbl_str='';   //插入字符串
+					var result = data.rows;
+					var total = data.total;
+					tbl.empty();	
+				
+				if(total== 0){
+					var warn_str="找不到符合查询条件的数据！";
+	                var type_str="warning";
+				    sweetWarn(warn_str,type_str);
+				}else{
+					$(result).each(function(key){
+					tbl_str=$('<tr>'+
+                                    '<td>'+result[key].stuffID+'</td>'+
+                                    '<td>'+result[key].stuffName+'</td>'+
+                                    '<td>'+result[key].stuffDepart+'</td>'+
+                                   '<td>'+result[key].stuffDuty+'</td>'+
+                                    '<td>'+result[key].basicSalary+'</td>'+
+                                    '<td>'+result[key].delSalary+'</td>'+
+                                    '<td>'+result[key].addSalary+'</td>'+
+                                    '<td>'+result[key].accountAwce+'</td>'+
+                                    '<td>'+result[key].fSalary+'</td>'+
+                        '</tr>');									
+						tbl.append(tbl_str);						
+				});
+				}
+					
+				}
+			});
+		}
+		
+//sweetalert 弹框（一个确定按钮）
+		function sweetWarn(str,type){
+			swal({
+				title:"提示",
+				text:str,
+				type:type
+			})
+		}
+		
+		
+		
+	
+});
 
 
 </script>

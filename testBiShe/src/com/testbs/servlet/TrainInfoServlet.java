@@ -2,9 +2,6 @@ package com.testbs.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,19 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.testbs.entity.DimissionInfo;
+import com.testbs.entity.TrainInfo;
+import com.testbs.service.DimissionInfoService;
+import com.testbs.service.TrainInfoService;
+
 import net.sf.json.JSONObject;
 
 
-import com.testbs.entity.allowance;
 
-import com.testbs.service.AllowanceService;
-
-public class AllowanceServlet extends HttpServlet {
+public class TrainInfoServlet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public AllowanceServlet() {
+	public TrainInfoServlet() {
 		super();
 	}
 
@@ -69,7 +68,7 @@ public class AllowanceServlet extends HttpServlet {
 		// 获取请求码
 		String reqCode = req.getParameter("reqCode");
 
-		if (reqCode.equals("findAllowanceInfosForPages")) {
+		if (reqCode.equals("findTrainInfosForPages")) {
 			// 当前页码
 			String pageNo = req.getParameter("page");
 			int pageNo1 = Integer.valueOf(pageNo);
@@ -78,135 +77,151 @@ public class AllowanceServlet extends HttpServlet {
 			int pageSize1 = Integer.valueOf(pageSize);
 			// 获取查询参数
 			String stuffID = req.getParameter("stuffID");
+			String stuffName = req.getParameter("stuffName");
 
-			AllowanceService allowanceService = new AllowanceService();
-			List<allowance> allowanceInfos = allowanceService.getAllowanceForPage(stuffID, pageNo1, pageSize1);
-			int total = allowanceService.getTotalCount(stuffID);
+			TrainInfoService trainInfoService = new TrainInfoService();
+			List<TrainInfo> trainInfos = trainInfoService.getTrainInfoForPage(
+					stuffID,stuffName, pageNo1, pageSize1);
+			int total = trainInfoService.getTotalCount(stuffID);
 
 			JSONObject json = new JSONObject();
 			json.put("total", total);
-			json.put("rows", allowanceInfos);
+			json.put("rows", trainInfos);
+
+			resp.setContentType("text/html;charset=utf-8");
+			PrintWriter out = resp.getWriter();
+			out.write(json.toString());
+			out.close();
+		} else if (reqCode.equals("findAllTrainInfos")) {
+			TrainInfoService trainInfoService = new TrainInfoService();
+			List<TrainInfo> trainInfos = trainInfoService.findAllTrainInfos();
+
+			JSONObject json = new JSONObject();
+			json.put("rows", trainInfos);
+			json.put("total", trainInfos.size());
 
 			resp.setContentType("text/html;charset=utf-8");
 			PrintWriter out = resp.getWriter();
 			out.write(json.toString());
 			out.close();
 		} 
-		else if (reqCode.equals("findAllAllowanceInfos")) {
-			AllowanceService allowanceService = new AllowanceService();
-			List<allowance> allowanceInfos = allowanceService.findAllAllowanceInfos();
-
+		
+		else if (reqCode.equals("findTrainInfoByCondition")) {
+			
+			String stuffName = req.getParameter("stuffName"); //姓名
+			String stuffID = req.getParameter("stuffID"); // 工号
+			String stuffDepart = req.getParameter("stuffDepart"); // 部门
+			
+			TrainInfoService trainInfoService = new TrainInfoService();
+			List<TrainInfo> trainInfos = trainInfoService.findTrainInfoByCondition(stuffID,stuffName,stuffDepart);
+	
 			JSONObject json = new JSONObject();
-			json.put("rows", allowanceInfos);
-			json.put("total", allowanceInfos.size());
+			json.put("rows", trainInfos);
+			json.put("total",trainInfos.size());
 
 			resp.setContentType("text/html;charset=utf-8");
 			PrintWriter out = resp.getWriter();
 			out.write(json.toString());
 			out.close();
-		} else if (reqCode.equals("findAllowanceInfoById")) {
+		} 
+		
+		else if (reqCode.equals("findTrainInfoById")) {
 			// 获取部门编号
 			String stuffID = req.getParameter("stuffID");
 			// 调用Model，查询该部门
-			AllowanceService allowanceService = new AllowanceService();
-			allowance allowanceInfo = allowanceService.findAllowanceInfoById(stuffID);
+			TrainInfoService trainInfoService = new TrainInfoService();
+			TrainInfo trainInfo = trainInfoService.findTrainInfoById(stuffID);
 
-			JSONObject json = JSONObject.fromObject(allowanceInfo);
+			JSONObject json = JSONObject.fromObject(trainInfo);
 			resp.setContentType("text/html;charset=utf-8");
 			PrintWriter out = resp.getWriter();
 			out.write(json.toString());
 			out.close();
-		} else if (reqCode.equals("updateAllowance")) {
+		} else if (reqCode.equals("updateTrainInfo")) {
 			// 提取数据
-//			int id = (Integer.parseInt(req.getParameter("id")));
-			
+			// int id = (Integer.parseInt(req.getParameter("id")));
+			String stuffID = req.getParameter("stuffID");
 			String stuffName = req.getParameter("stuffName");
 			String stuffDepart = req.getParameter("stuffDepart");
-			
-			int allowanceMonth=(Integer.parseInt(req.getParameter("allowanceMonth")));
-			double transAwce=(Double.parseDouble(req.getParameter("transAwce")));
-			double foodAwce=(Double.parseDouble(req.getParameter("foodAwce")));
-			double houseAwce=(Double.parseDouble(req.getParameter("houseAwce")));
-			double cmuAwce=(Double.parseDouble(req.getParameter("cmuAwce")));
+			String trainType = req.getParameter("trainType");
+			String trainBegin = req.getParameter("trainBegin");
+			String trainEnd = req.getParameter("trainEnd");
+			String trainTeacher = req.getParameter("trainTeacher");
+			String trainResult = req.getParameter("trainResult");
 
-			
-			
-			//entity里要有相应的参数组合
-			allowance allowanceInfo = new allowance(stuffName,
-					stuffDepart, allowanceMonth,transAwce,foodAwce,houseAwce,cmuAwce);
+			TrainInfo trainInfo = new TrainInfo(stuffID,stuffName, stuffDepart, trainType,
+					trainBegin,trainEnd,trainTeacher,trainResult);
 			// 调用Model
-			AllowanceService allowanceService = new AllowanceService();
-			int result = allowanceService
-					.updateAllowance(allowanceInfo);
+			TrainInfoService trainInfoService = new TrainInfoService();
+			int result = trainInfoService.updateTrainInfo(trainInfo);
 			resp.setContentType("text/html;charset=utf-8");
 			PrintWriter out = resp.getWriter();
 
 			if (result > 0) {
-				out.write("补贴修改成功！");
+				out.write("培训信息修改成功！");
 			} else {
-				out.write("补贴修改失败！");
+				out.write("培训信息修改失败！");
 			}
 			out.close();
-		}
-		else if (reqCode.equals("addAllowance")) {
+		} else if (reqCode.equals("addTrainInfo")) {
 			// 要做新增用户操作
-			addAllowance(req, resp);
-		} else if (reqCode.equals("delAllowance")) {
-			delAllowance(req, resp);
+			addTrainInfo(req, resp);
+		} else if (reqCode.equals("delTrainInfo")) {
+			delTrainInfo(req, resp);
 		}
 
 	}
 
-	private void addAllowance(HttpServletRequest req,
-			HttpServletResponse resp) throws IOException {
+	private void addTrainInfo(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
 		// 获取参数
 		// int id= (Integer.parseInt(req.getParameter("id")));
 		String stuffID1 = req.getParameter("stuffID");
 		String stuffName = req.getParameter("stuffName");
-		String stuffDepart=req.getParameter("stuffDepart");
-		int allowanceMonth=(Integer.parseInt(req.getParameter("allowanceMonth")));
-		double transAwce=(Double.parseDouble(req.getParameter("transAwce")));
-		double foodAwce=(Double.parseDouble(req.getParameter("foodAwce")));
-		double houseAwce=(Double.parseDouble(req.getParameter("houseAwce")));
-		double cmuAwce=(Double.parseDouble(req.getParameter("cmuAwce")));
+		String stuffDepart = req.getParameter("stuffDepart");
+		String trainType = req.getParameter("trainType");
+		String trainBegin = req.getParameter("trainBegin");
+		String trainEnd = req.getParameter("trainEnd");
+		String trainTeacher = req.getParameter("trainTeacher");
+		String trainResult = req.getParameter("trainResult");
 		
-		
+
 		// 将获取的参数封装成User
-		allowance d = new allowance();
+		TrainInfo d = new TrainInfo();
 		// d.setId(id);
 		d.setStuffID(stuffID1);
 		d.setStuffName(stuffName);
 		d.setStuffDepart(stuffDepart);
-		d.setAllowanceMonth(allowanceMonth);
-		d.setTransAwce(transAwce);
-		d.setFoodAwce(foodAwce);
-		d.setHouseAwce(houseAwce);
-		d.setCmuAwce(cmuAwce);
+		d.setTrainType(trainType);
+		d.setTrainBegin(trainBegin);
+		d.setTrainEnd(trainEnd);
+		d.setTrainTeacher(trainTeacher);
+		d.setTrainResult(trainResult);
 
 		// 调用Model执行数据处理（插入到数据库）s
-		AllowanceService allowanceService = new AllowanceService();
-		int result = allowanceService.addAllowance(d);
+		TrainInfoService trainInfoService = new TrainInfoService();
+		int result = trainInfoService.addTrainInfo(d);
 
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter out = resp.getWriter();
 
 		if (result > 0) {
-			out.write("增加补贴信息成功！");
+			out.write("增加培训信息成功！");
 		} else {
-			out.write("增加补贴信息失败！");
+			out.write("增加培训信息失败！");
 		}
 		out.close();
 	}
 
-	private void delAllowance(HttpServletRequest req,
-			HttpServletResponse resp) throws IOException {
+	private void delTrainInfo(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
 		// 读取参数
 		String stuffID = req.getParameter("stuffID");
 
 		// 调用Model，进行删除
-		AllowanceService allowanceService = new AllowanceService();
-		
-		int result = allowanceService.delAllowanceId(stuffID);
+		TrainInfoService trainInfoService = new TrainInfoService();
+
+		int result = trainInfoService.delTrainInfoId(stuffID);
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter out = resp.getWriter();
 		if (result > 0) {
@@ -216,13 +231,7 @@ public class AllowanceServlet extends HttpServlet {
 		}
 		out.close();
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	/**
 	 * Initialization of the servlet. <br>
 	 * 
@@ -234,4 +243,3 @@ public class AllowanceServlet extends HttpServlet {
 	}
 
 }
-

@@ -109,6 +109,22 @@ public class CheckInfo {
 		this.lateHour = lateHour;
 		this.absentHour = absentHour;
 	}
+	
+	
+
+	public CheckInfo(String stuffID, String stuffName, String stuffDepart,
+			String stuffShift, double workHour, String workDate,
+			double lateHour, double absentHour) {
+		super();
+		this.stuffID = stuffID;
+		this.stuffName = stuffName;
+		this.stuffDepart = stuffDepart;
+		this.stuffShift = stuffShift;
+		this.workHour = workHour;
+		this.workDate = workDate;
+		this.lateHour = lateHour;
+		this.absentHour = absentHour;
+	}
 
 	public CheckInfo() {
 		super();

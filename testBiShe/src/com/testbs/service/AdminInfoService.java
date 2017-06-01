@@ -9,16 +9,21 @@ import java.util.List;
 
 import com.testbs.dao.BaseDao;
 import com.testbs.entity.AdminInfo;
+import com.testbs.entity.TrainInfo;
 
 public class AdminInfoService extends BaseDao {
 	//分页	
-			public List<AdminInfo> getAdminInfoForPage(String stuffID,Integer pageNo,Integer pageSize) {
+			public List<AdminInfo> getAdminInfoForPage(String stuffID,String stuffName,Integer pageNo,Integer pageSize) {
 				String query="select * from admininfo where 1=1";
 				List<Object> params =new ArrayList<Object>();
 		        //搜索的条件
 				if(stuffID!=null && !"".equals(stuffID)){
 					query =query +" and stuffID like ?";
 					params.add("%"+stuffID+"%");
+				}
+				if(stuffName!=null && !"".equals(stuffName)){
+					query =query +" and stuffName like ?";
+					params.add("%"+stuffName+"%");
 				}
 
 				params.add((pageNo-1)*pageSize);
@@ -29,12 +34,12 @@ public class AdminInfoService extends BaseDao {
 					while(rs.next()){
 						int id= rs.getInt("id");
 						String stuffID1 = rs.getString("stuffID");
-						String stuffName = rs.getString("stuffName");
+						String stuffName1 = rs.getString("stuffName");
 						String reginDate = rs.getString("reginDate");
 						String account=rs.getString("account");
 						String password=rs.getString("password");
 						
-						AdminInfo adminInfo = new AdminInfo(id,stuffID1,stuffName,reginDate,account,password);
+						AdminInfo adminInfo = new AdminInfo(id,stuffID1,stuffName1,reginDate,account,password);
 						adminInfos.add(adminInfo);
 					}
 				} catch (SQLException e) {
@@ -70,7 +75,7 @@ public class AdminInfoService extends BaseDao {
 						int  id= rs.getInt("id");
 						String stuffID1 = rs.getString("stuffID");
 						String stuffName = rs.getString("stuffName");
-						String reginDate = rs.getString("reginDate");	
+						String reginDate = rs.getString("resignDate");	
 						String account=rs.getString("account");
 						String password=rs.getString("password");	
 						AdminInfo adminInfo = new AdminInfo(id,stuffID1,stuffName,reginDate,account,password);
@@ -83,6 +88,62 @@ public class AdminInfoService extends BaseDao {
 				}
 				return adminInfos;
 			}
+			
+			
+			//根据条件返数据
+			public List<AdminInfo> findAdminInfoByCondition(String stuffID,String stuffName) {
+				List<AdminInfo> adminInfos = new ArrayList<AdminInfo>();
+				List<Object> paramsTemp = new ArrayList<Object>();
+				List<Object> params = new ArrayList<Object>();
+								 
+				 String	query ="";
+				 ResultSet rs;
+				 
+				 if((stuffID!=""&&stuffID!=null)&&(stuffName!=""&&stuffName!=null)){
+					 params.add(stuffID);		
+					 params.add(stuffName);
+					 paramsTemp=params;
+					 
+					 query = " select *  from  admininfo  where stuffID = ? and stuffName = ?";			
+				 }
+				 else  if((stuffID==""||stuffID==null)&&(stuffName!=""&&stuffName!=null)){
+					
+					 params.add(stuffName);
+					 paramsTemp=params;		
+					 query="select *  from  admininfo  where stuffName = ?";
+				 }
+				 else  if((stuffName==""||stuffName==null)&&(stuffID!=""&&stuffID!=null)){
+					 
+					 params.add(stuffID);
+					 paramsTemp=params;
+					 query="select *  from  admininfo  where stuffID = ?";
+				 }
+				 
+				 rs = this.executeQuery(query, paramsTemp);
+				 
+				try {
+					while(rs.next()){     
+						String stuffID1 = rs.getString("stuffID");
+						String stuffName1 = rs.getString("stuffName");
+						String resignDate = rs.getString("resignDate");	
+						String account=rs.getString("account");
+						String password=rs.getString("password");	
+										
+						AdminInfo adminInfo = new AdminInfo(stuffID1,stuffName1,resignDate,account,password);
+						adminInfos.add(adminInfo);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}finally{
+					this.close();
+				}
+				return adminInfos;
+			}
+
+			
+			
+			
 		
 			//根据id返数据	
 			public AdminInfo findAdminInfoById(String stuffID) {
@@ -116,14 +177,14 @@ public class AdminInfoService extends BaseDao {
 			
 			//修改	
 			public int updateAdminInfo(AdminInfo adminInfo) {
-				String update =" update admininfo set stuffName=?,account=?,password=? where stuffID=? ";
+				String update =" update admininfo set  account=?,password=? where stuffID=? ";
 				List<Object> params = new ArrayList<Object>();
 //				params.add(departmentInfo.getId());
 				
-				params.add(adminInfo.getStuffName());
 				params.add(adminInfo.getAccount());
 				params.add(adminInfo.getPassword());
-		
+				params.add(adminInfo.getStuffID());
+				
 				return this.executeUpdate(update, params);
 			}
 
@@ -139,7 +200,7 @@ public class AdminInfoService extends BaseDao {
 		     //增加部门
 			public int addAdminInfo(AdminInfo adminInfo){
 				int result = 0;
-				String sql = " insert into admininfo(stuffID,stuffName,reginDate,account,password) values (?,?,?,?,?)";
+				String sql = " insert into admininfo(stuffID,stuffName,resignDate,account,password) values (?,?,?,?,?)";
 				List<Object> params = new ArrayList<Object>();
 				params.add(adminInfo.getStuffID());
 				params.add(adminInfo.getStuffName());
