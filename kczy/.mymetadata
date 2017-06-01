@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="kczy"
+  id="myeclipse.1450659625154"
+  context-root="/kczy"
+  j2ee-spec="5.0"
+  archive="kczy.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

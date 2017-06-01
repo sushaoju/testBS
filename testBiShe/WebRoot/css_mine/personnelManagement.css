@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+/*弹框*/
+#edit_box,#add_box{
+    padding: 20px;
+}
+
+#edit_box h2,
+#add_box h2{
+    text-align: center;
+}
+
+#edit_box form,
+#add_box form{
+    padding-top: 10px;
+}
+
+#edit_box input,
+#edit_box select,
+#add_box input,
+#add_box select{
+    width: 60%;
+    display: inline-block;
+}
+
+#edit_box .col-sm-6,
+#add_box .col-sm-6,
+#edit_box .col-sm-12{
+    margin-bottom: 20px;
+}
+
+#edit_box #e_stuffAdd,
+#edit_box #e_stuffColleage{
+    width: 77%;
+}
+
+
+/*员工基本信息  详情*/
+#staff_detail .row{
+    padding: 5px 0 20px 20px;
+}
+#staff_detail .col-sm-4,
+#staff_detail .col-sm-8{
+    margin-bottom: 5px;
+}

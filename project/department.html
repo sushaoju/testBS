@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="人力资源管理系统,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="人力资源管理系统是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+    <title>部门管理</title>
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html"/>
+    <![endif]-->
+
+    <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+
+    <link rel="stylesheet" href="css_mine/personnelManagement.css">
+</head>
+<body class="gray-bg">
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>编辑操作</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <label for="department_name">部门名称:</label>
+
+                    <select name="department_name" id="department_name" class="form-control m-b" style="display:inline-block;width:100px">
+                        <option value="0">全部</option>
+                        <option value="1">技术中心</option>
+                        <option value="2">财务部</option>
+                        <option value="3">运营部</option>
+                        <option value="4">市场部</option>
+                        <option value="5">人事部</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-info" type="button">查询</button>
+                </div>
+
+                <div class="col-md-1 pull-right" style="margin-right: 50px;">
+                    <button class="btn btn-danger " type="button"><i class="fa fa-trash-o fa-fw"></i>删除所选项</button>
+                </div>
+                <div class="col-md-1 pull-right" style="margin-right: 20px;">
+                    <button id="depart_addBtn" class="btn btn-info" type="button"><i class="fa fa-plus fa-fw"></i>增加部门</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="ibox-title">
+            <h5>查询结果</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="ibox-content">
+
+            <div class="row row-lg">
+                <div class="col-sm-12">
+                    <h4 class="example-title">有数据时</h4>
+                    <div class="example">
+                        <table id="exampleTableColumns" data-mobile-responsive="true">
+                            <thead>
+                            <tr>
+                                <th><input type="checkbox"></th>
+
+                                <th>ID</th>
+                                <th>部门名称</th>
+                                <th>部门负责人</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>1</td>
+                                <td>技术中心</td>
+                                <td>苏少菊</td>
+                                <td>
+                                    <button class="btn btn-info edit_btn" type="button"><i class="fa fa-pencil fa-fw"></i>编辑
+                                    </button>
+                                    <button class="btn btn-danger " type="button"><i class="fa fa-trash-o fa-fw"></i>删除
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>2</td>
+                                <td>财务部</td>
+                                <td>董玉霞</td>
+                                <td>
+                                    <button class="btn btn-info edit_btn" type="button"><i class="fa fa-pencil fa-fw"></i>编辑
+                                    </button>
+                                    <button class="btn btn-danger " type="button"><i class="fa fa-trash-o fa-fw"></i>删除
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!--编辑弹框 start-->
+<div id="edit_box">
+    <h2>编辑部门信息</h2>
+    <form>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label for="e_departID">编号:</label>
+                <span id="e_departID">s001</span>
+            </div>
+            <div class="clearfix hidden-xs"></div>
+        </div>
+
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="e_departName">部门名称:</label>
+                <input class="form-control" type="text" placeholder="请输入部门名称" id="e_departName">
+            </div>
+
+            <div class="col-sm-6">
+                <label for="e_departPrince">部门负责人:</label>
+                <input class="form-control" type="text" placeholder="请输入部门名称" id="e_departPrince">
+            </div>
+        </div>
+
+        <div class="from-group">
+            <div class="col-sm-6 text-center">
+                <button class="btn btn-primary btn-lg" type="button">修改</button>
+
+            </div>
+
+            <div class="col-sm-6 text-center">
+                <button id="edit_closeBtn" class="btn btn-default btn-lg" type="button">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--编辑弹框 end-->
+
+
+<!--增加弹框 start-->
+<div id="add_box">
+    <h2>增加部门信息</h2>
+    <form>
+
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label for="a_departID">部门编号:</label>
+                <input class="form-control" type="text" placeholder="请输入部门名称" id="a_departID">
+            </div>
+            <div class="clearfix hidden-xs"></div>
+        </div>
+
+        <div class="from-group">
+            <div class="col-sm-6">
+                <label for="a_departName">部门名称:</label>
+                <input class="form-control" type="text" placeholder="请输入部门名称" id="a_departName">
+            </div>
+
+            <div class="col-sm-6">
+                <label for="a_departPrince">部门负责人:</label>
+                <input class="form-control" type="text" placeholder="请输入部门负责人" id="a_departPrince">
+            </div>
+        </div>
+
+        <div class="from-group">
+            <div class="col-sm-6 text-center">
+                <button class="btn btn-primary btn-lg" type="button">增加</button>
+            </div>
+
+            <div class="col-sm-6 text-center">
+                <button id="add_closeBtn" class="btn btn-default btn-lg" type="button">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--增加弹框 end-->
+
+
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/plugins/layer/layer.min.js"></script>
+<script src="js/content.min.js?v=1.0.0"></script>
+<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/demo/bootstrap-table-demo.min.js"></script>
+
+
+<script>
+    //编辑按钮 弹框
+    $(".edit_btn").click(alertEditBox);
+    function alertEditBox() {
+
+        layer.open({
+            type: 1,
+            closeBtn: true,
+            title: false,
+            area: ['600px', '350px'],
+            shadeClose: false, //点击遮罩不关闭
+            content: $('#edit_box')
+        });
+
+        $("#edit_box").show();
+    }
+    $("#edit_closeBtn").click(function () {
+        $(".layui-layer-close2").click();
+    });
+
+
+    //增加按钮 弹框
+    $("#depart_addBtn").click(alertAddBox);
+    function alertAddBox() {
+        layer.open({
+            type: 1,
+            closeBtn: true,
+            title: false,
+            area: ['550px', '300px'],
+            shadeClose: false, //点击遮罩不关闭
+            content: $('#add_box')
+        });
+
+        $("#add_box").show();
+    }
+    $("#add_closeBtn").click(function () {
+        $(".layui-layer-close2").click();
+    });
+</script>
+</body>
+</html>
